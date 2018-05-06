@@ -61,6 +61,51 @@ namespace Fs.Binary.Codecs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The affix array may not contain more than 31 elements..
+        /// </summary>
+        internal static string AffixArrayLimitedTo31 {
+            get {
+                return ResourceManager.GetString("AffixArrayLimitedTo31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An affix string cannot be empty..
+        /// </summary>
+        internal static string AffixCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("AffixCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An affix string cannot be null..
+        /// </summary>
+        internal static string AffixCannotBeNull {
+            get {
+                return ResourceManager.GetString("AffixCannotBeNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The strings in the affix array must be unique..
+        /// </summary>
+        internal static string AffixMustBeUnique {
+            get {
+                return ResourceManager.GetString("AffixMustBeUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The same character cannot have multiple meanings within an alphabet..
+        /// </summary>
+        internal static string AlphabetConflict {
+            get {
+                return ResourceManager.GetString("AlphabetConflict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The alphabet must be exactaly {0} characters in length..
         /// </summary>
         internal static string AlphabetMustExactLength {
@@ -84,6 +129,24 @@ namespace Fs.Binary.Codecs {
         internal static string AlphabetOrdinalMustBeByte {
             get {
                 return ResourceManager.GetString("AlphabetOrdinalMustBeByte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data contains one or more characters that are not allowed or an invalid combination of characters..
+        /// </summary>
+        internal static string DecoderGenericInvalidCharacter {
+            get {
+                return ResourceManager.GetString("DecoderGenericInvalidCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data contains an invalid escape sequence..
+        /// </summary>
+        internal static string DecoderHexDigitOrLineBreakExpected {
+            get {
+                return ResourceManager.GetString("DecoderHexDigitOrLineBreakExpected", resourceCulture);
             }
         }
         

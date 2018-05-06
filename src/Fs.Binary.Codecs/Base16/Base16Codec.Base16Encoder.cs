@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Fs.Binary.Codecs.Settings;
 
 namespace Fs.Binary.Codecs.Base16
 {
@@ -68,13 +69,14 @@ namespace Fs.Binary.Codecs.Base16
             {
                 _currentState = State.Reset;
                 _previousState = State.ReturnToPreviousState;
+                _currentLineLength = 0;
             }
 
             public ConvertStatus ConvertData ( ReadOnlySpan<byte> inputData, int inputIndex, int inputCount, Span<char> outputData, int outputIndex, int outputCount, bool flush, out int inputUsed, out int outputUsed )
             {
                 var inputEnd = inputIndex + inputCount;
                 var outputEnd = outputIndex + outputCount;
-                var hasSeparators = (_lineSeparator != null);
+                var hasSeparators = (_lineSeparator != null) && (_lineSeparator.Length != 0);
                 inputUsed = outputUsed = 0;
 
                 while (true)
@@ -181,7 +183,7 @@ namespace Fs.Binary.Codecs.Base16
                             goto case State.BeginWriting;
 
                         case State.BeginFinalSeparator:
-                            if ((!hasSeparators) || ((_flags & Base16Settings.FlagIncludeTerminatingLineSeparator) == 0)) goto case State.Finished;
+                            if ((!hasSeparators) || ((_flags & SettingsFlags.ForceTerminatingLineSeparator) == 0)) goto case State.Finished;
 
                             SetPreviousState(State.Finished);
                             goto case State.BeginSeparator;
@@ -208,6 +210,7 @@ namespace Fs.Binary.Codecs.Base16
                         case State.ReturnToPreviousState:
                             System.Diagnostics.Debug.Assert(_previousState != State.ReturnToPreviousState);
                             _currentState = _previousState;
+                            _previousState = State.ReturnToPreviousState;
                             continue;
 
                         default:

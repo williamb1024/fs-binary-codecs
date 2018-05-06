@@ -177,7 +177,7 @@ namespace Fs.Binary.Codecs.Base16
             return (byteCount << 1) + Settings.EncodingAffixLength;
         }
 
-        public override int MinimumInputBuffer => Settings.GetMinimumInputBuffer();
+        public override int MinimumInputBuffer => Settings.DecodingMinimumInputBuffer;
         public override int MinimumOutputBuffer => 1;
 
         public Base16Settings Settings { get; }

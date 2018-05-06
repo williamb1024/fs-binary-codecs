@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
-using Fs.Binary.Codecs.Common;
+using Fs.Binary.Codecs.Settings;
 
 namespace Fs.Binary.Codecs.Base16
 {
@@ -82,7 +82,7 @@ namespace Fs.Binary.Codecs.Base16
                             goto case State.BeginReadingPrefix;
 
                         case State.BeginReadingPrefix:
-                            if ((_flags & Base16Settings.FlagHasPrefixes) == 0) goto case State.BeginReading;
+                            if ((_flags & SettingsFlags.FlagHasPrefixes) == 0) goto case State.BeginReading;
                             _currentState = State.ReadingPrefix;
                             goto case State.ReadingPrefix;
 
@@ -92,7 +92,7 @@ namespace Fs.Binary.Codecs.Base16
                                 if (matchLength < 0) // need more data..
                                     return ConvertStatus.InputRequired;
 
-                                if ((matchLength == 0) && ((_flags & Base16Settings.FlagRequirePrefix) != 0))
+                                if ((matchLength == 0) && ((_flags & SettingsFlags.FlagRequirePrefix) != 0))
                                     throw new FormatException(Resources.DecoderPrefixRequired);
 
                                 inputIndex += matchLength;
@@ -111,7 +111,7 @@ namespace Fs.Binary.Codecs.Base16
                                 char inputChar = inputData[inputIndex++];
                                 if (inputChar >= 128)
                                 {
-                                    if ((_flags & Base16Settings.FlagIgnoreInvalidCharacters) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
                                         throw new FormatException(Resources.DecoderInvalidCharacter);
 
                                     // ignoring invalid characters..
@@ -152,15 +152,15 @@ namespace Fs.Binary.Codecs.Base16
 
                                 // inputChar is always 127 or less here (due to check above)
                                 byte decodedValue = _decodingTable[inputChar];
-                                if ((decodedValue & Base16Settings.CharTypeMask) == Base16Settings.CharAlphabet)
+                                if ((decodedValue & SettingsCharacterTypes.CharTypeMask) == SettingsCharacterTypes.CharAlphabet)
                                 {
                                     _decodedBits = (_decodedBits << 4) | (uint)(decodedValue & 0x0F);
                                     _decodedCount++;
                                 }
-                                else if (decodedValue != Base16Settings.CharSpecialIgnored)
+                                else if (decodedValue != SettingsCharacterTypes.CharSpecialIgnored)
                                 {
                                     // all non-ignored characters are treated as invalid..
-                                    if ((_flags & Base16Settings.FlagIgnoreInvalidCharacters) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
                                         throw new FormatException(Resources.DecoderInvalidCharacter);
                                 }
 
@@ -191,7 +191,7 @@ namespace Fs.Binary.Codecs.Base16
                             if ((_decodedCount & 0x01) != 0)
                             {
                                 // an odd number of input characters is invalid..
-                                if ((_flags & Base16Settings.FlagIgnoreInvalidFinalQuantum) == 0)
+                                if ((_flags & SettingsFlags.FlagIgnoreInvalidFinalQuantum) == 0)
                                     throw new FormatException(Resources.DecoderTruncatedQuantum);
 
                                 _decodedBits >>= 4;
@@ -206,7 +206,7 @@ namespace Fs.Binary.Codecs.Base16
                             goto case State.BeginWriting;
 
                         case State.Finished:
-                            if (((_flags & Base16Settings.FlagRequirePostfix) != 0) && (!_postfixRead))
+                            if (((_flags & SettingsFlags.FlagRequirePostfix) != 0) && (!_postfixRead))
                                 throw new FormatException(Resources.DecoderPostfixRequired);
 
                             _currentState = State.Reset;

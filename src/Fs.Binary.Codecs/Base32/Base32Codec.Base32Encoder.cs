@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Fs.Binary.Codecs.Settings;
 
 namespace Fs.Binary.Codecs.Base32
 {
@@ -76,6 +77,7 @@ namespace Fs.Binary.Codecs.Base32
 
             public void Reset ()
             {
+                _currentLineLength = 0;
                 _currentState = State.Reset;
                 _previousState = State.ReturnToPreviousState;
                 _requiredPadding = 0;
@@ -85,7 +87,7 @@ namespace Fs.Binary.Codecs.Base32
             {
                 var inputEnd = inputIndex + inputCount;
                 var outputEnd = outputIndex + outputCount;
-                var hasSeparators = (_lineSeparator != null);
+                var hasSeparators = (_lineSeparator != null) && (_lineSeparator.Length != 0);
                 inputUsed = outputUsed = 0;
 
                 while (true)
@@ -207,7 +209,7 @@ namespace Fs.Binary.Codecs.Base32
                             if (_requiredPadding != 0) goto case State.BeginWritingPadding;
                             if (_encodedCount == 0) goto case State.BeginWritingPostfix;
 
-                            if ((_flags & Base32Settings.FlagHasPaddingCharacter) != 0)
+                            if ((_flags & SettingsFlags.FlagHasPaddingCharacter) != 0)
                                 _requiredPadding = PadInfo[PadInfoEncoding, _encodedCount];
 
                             _encodedBits <<= 8 * (int)(5u - _encodedCount);
@@ -216,7 +218,7 @@ namespace Fs.Binary.Codecs.Base32
                             goto case State.BeginWriting;
 
                         case State.BeginFinalSeparator:
-                            if ((!hasSeparators) || ((_flags & Base32Settings.FlagIncludeTerminatingLineSeparator) == 0)) goto case State.Finished;
+                            if ((!hasSeparators) || ((_flags & SettingsFlags.ForceTerminatingLineSeparator) == 0)) goto case State.Finished;
 
                             SetPreviousState(State.Finished);
                             goto case State.BeginSeparator;
@@ -243,6 +245,7 @@ namespace Fs.Binary.Codecs.Base32
                         case State.ReturnToPreviousState:
                             System.Diagnostics.Debug.Assert(_previousState != State.ReturnToPreviousState);
                             _currentState = _previousState;
+                            _previousState = State.ReturnToPreviousState;
                             continue;
 
                         default:

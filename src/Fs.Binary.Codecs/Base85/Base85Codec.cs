@@ -179,7 +179,7 @@ namespace Fs.Binary.Codecs.Base85
                 throw new ArgumentOutOfRangeException(nameof(charCount));
 
             // if we support Z or Y abbreviations, then every character could be 5 bytes..
-            if ((Settings.FourSpacesAbbreviation.HasValue) || (Settings.FourZerosAbbreviation.HasValue))
+            if ((Settings.ZeroQuantumCharacter.HasValue) || (Settings.SpacesQuantumCharacter.HasValue))
                 return charCount * 5;
 
             // otherwise every 5 characters becomes 4 bytes...
@@ -196,7 +196,7 @@ namespace Fs.Binary.Codecs.Base85
             if (leftOverBytes == 0)
                 return maxChars;
 
-            if (Settings.EncodingCompleteFinalQuantum)
+            if (!Settings.EncodingTruncateFinalQuantum)
                 maxChars += 5;
             else
                 maxChars += PadInfo[PadInfoBytesToChars, leftOverBytes];
@@ -204,7 +204,7 @@ namespace Fs.Binary.Codecs.Base85
             return maxChars;
         }
 
-        public override int MinimumInputBuffer => Settings.GetMinimumInputBuffer();
+        public override int MinimumInputBuffer => Settings.DecodingMinimumInputBuffer;
         public override int MinimumOutputBuffer => 1;
 
         public Base85Settings Settings { get; }

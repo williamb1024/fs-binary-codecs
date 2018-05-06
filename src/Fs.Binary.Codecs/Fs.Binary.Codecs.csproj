@@ -1,19 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net46;net47;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!--<DocumentationFile>bin\Debug\net46\Fs.Binary.Codecs.xml</DocumentationFile>-->
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!--<DocumentationFile>bin\Release\net46\Fs.Binary.Codecs.xml</DocumentationFile>-->
   </PropertyGroup>
 
+  <ItemGroup Condition="('$(TargetFramework)'=='net45') OR ('$(TargetFramework)'=='net46')">
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="Nerdbank.GitVersioning" Version="2.1.23">
       <PrivateAssets>all</PrivateAssets>

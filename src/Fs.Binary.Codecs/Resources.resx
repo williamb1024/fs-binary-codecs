@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AffixArrayLimitedTo31" xml:space="preserve">
+    <value>The affix array may not contain more than 31 elements.</value>
+  </data>
+  <data name="AffixCannotBeEmpty" xml:space="preserve">
+    <value>An affix string cannot be empty.</value>
+  </data>
+  <data name="AffixCannotBeNull" xml:space="preserve">
+    <value>An affix string cannot be null.</value>
+  </data>
+  <data name="AffixMustBeUnique" xml:space="preserve">
+    <value>The strings in the affix array must be unique.</value>
+  </data>
+  <data name="AlphabetConflict" xml:space="preserve">
+    <value>The same character cannot have multiple meanings within an alphabet.</value>
+  </data>
   <data name="AlphabetMustExactLength" xml:space="preserve">
     <value>The alphabet must be exactaly {0} characters in length.</value>
   </data>
@@ -125,6 +140,12 @@
   </data>
   <data name="AlphabetOrdinalMustBeByte" xml:space="preserve">
     <value>The ordinal value of all characters in the alphabet must be 127 or less.</value>
+  </data>
+  <data name="DecoderGenericInvalidCharacter" xml:space="preserve">
+    <value>The data contains one or more characters that are not allowed or an invalid combination of characters.</value>
+  </data>
+  <data name="DecoderHexDigitOrLineBreakExpected" xml:space="preserve">
+    <value>The data contains an invalid escape sequence.</value>
   </data>
   <data name="DecoderInvalidCharacter" xml:space="preserve">
     <value>The data contains a character that is not part of the encoding alphabet and is not considered an ignorable character.</value>

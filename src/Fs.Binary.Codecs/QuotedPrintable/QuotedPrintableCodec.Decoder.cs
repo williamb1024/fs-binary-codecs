@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
-using Fs.Binary.Codecs.Common;
+using Fs.Binary.Codecs.Settings;
 
 namespace Fs.Binary.Codecs.QuotedPrintable
 {

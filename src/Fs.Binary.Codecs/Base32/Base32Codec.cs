@@ -206,7 +206,7 @@ namespace Fs.Binary.Codecs.Base32
             return maxChars;
         }
 
-        public override int MinimumInputBuffer => Settings.GetMinimumInputBuffer();
+        public override int MinimumInputBuffer => Settings.DecodingMinimumInputBuffer;
         public override int MinimumOutputBuffer => 1;
 
         public Base32Settings Settings { get; }

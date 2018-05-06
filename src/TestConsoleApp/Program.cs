@@ -240,27 +240,44 @@ namespace TestConsoleApp
         {
             //StreamTest(Base85Codec.Standard);
 
-            var sb = new StringBuilder();
-            for (int iIndex = 33; iIndex <= 60; iIndex++)
-                sb.Append((char)iIndex);
+            //var sb = new StringBuilder();
+            //for (int iIndex = 33; iIndex <= 60; iIndex++)
+            //    sb.Append((char)iIndex);
 
-            for (int iIndex = 62; iIndex <= 126; iIndex++ )
-                sb.Append((char)iIndex);
+            //for (int iIndex = 62; iIndex <= 126; iIndex++ )
+            //    sb.Append((char)iIndex);
 
-            if (sb.ToString() == "")
-                ;
+            //if (sb.ToString() == "")
+            //    ;
 
-            RoundTriping(BinaryCodecs.Ascii85);
+            //RoundTriping(BinaryCodecs.QuotedPrintable);
+
+            var rand = new Random(10);
+
+            byte[] bs = new byte[400];
+            for (int i = 0; i < bs.Length; i++)
+                bs[i] = (byte)rand.Next(256);
+
+            for (int i = 0; i < 8; i++)
+                Console.Write("1234567890");
+
+            Console.WriteLine();
+            for (int i = 0; i < 8; i++)
+                Console.Write($"         {i+1}");
+
+            Console.WriteLine();
+
+
+            Console.WriteLine(BinaryCodecs.QuotedPrintable.GetBytes("          "));
+
+            Console.WriteLine(BinaryCodecs.QuotedPrintable.GetString(bs));
 
             //Console.WriteLine(Base85Codec.Standard.GetString(new byte[] { 0, 0, 0, 0 }));
-
             ////            Console.WriteLine(Encode(Base32BinaryEncoding.Standard, new byte[] { 0x31, 0x32, 0x33 }));
-
             //byte[] bs = null;
             //////bs = Decode(new Base16BinaryEncoding(new Base16Settings { DecodingIgnoreInvalidFinalQuantum = true }), "F0F");
             //bs = Decode(Base85Codec.Standard, "o)");
             //Console.WriteLine($"{bs.Length}");
-
 
             //bs = Encoding.ASCII.GetBytes("\0\0\0\0");
             //var encoded = Encode(Base85Codec.Standard, bs);

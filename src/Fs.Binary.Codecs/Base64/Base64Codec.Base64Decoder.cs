@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
-using Fs.Binary.Codecs.Common;
+using Fs.Binary.Codecs.Settings;
 
 namespace Fs.Binary.Codecs.Base64
 {
@@ -88,7 +88,7 @@ namespace Fs.Binary.Codecs.Base64
                             goto case State.BeginReadingPrefix;
 
                         case State.BeginReadingPrefix:
-                            if ((_flags & Base64Settings.FlagHasPrefixes) == 0) goto case State.BeginReading;
+                            if ((_flags & SettingsFlags.FlagHasPrefixes) == 0) goto case State.BeginReading;
                             _currentState = State.ReadingPrefix;
                             goto case State.ReadingPrefix;
 
@@ -98,7 +98,7 @@ namespace Fs.Binary.Codecs.Base64
                                 if (matchLength < 0) // need more data..
                                     return ConvertStatus.InputRequired;
 
-                                if ((matchLength == 0) && ((_flags & Base64Settings.FlagRequirePrefix) != 0))
+                                if ((matchLength == 0) && ((_flags & SettingsFlags.FlagRequirePrefix) != 0))
                                     throw new FormatException(Resources.DecoderPrefixRequired);
 
                                 inputIndex += matchLength;
@@ -121,7 +121,7 @@ namespace Fs.Binary.Codecs.Base64
                                 char inputChar = inputData[inputIndex++];
                                 if (inputChar >= 128)
                                 {
-                                    if ((_flags & Base64Settings.FlagIgnoreInvalidCharacters) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
                                         throw new FormatException(Resources.DecoderInvalidCharacter);
 
                                     // ignoring invalid characters..
@@ -162,19 +162,19 @@ namespace Fs.Binary.Codecs.Base64
 
                                 // inputChar is always 127 or less here (due to check above)
                                 byte decodedValue = _decodingTable[inputChar];
-                                if ((decodedValue & Base64Settings.CharTypeMask) == Base64Settings.CharAlphabet)
+                                if ((decodedValue & SettingsCharacterTypes.CharTypeMask) == SettingsCharacterTypes.CharAlphabet)
                                 {
                                     _decodedBits = (_decodedBits << 6) | (uint)(decodedValue & 0x3F);
                                     _decodedCount++;
                                 }
-                                else if (decodedValue != Base64Settings.CharSpecialIgnored)
+                                else if (decodedValue != SettingsCharacterTypes.CharSpecialIgnored)
                                 {
                                     // padding characters are handled in the reading padding state..
-                                    if (decodedValue == Base64Settings.CharSpecialPadding)
+                                    if (decodedValue == SettingsCharacterTypes.CharSpecialPadding)
                                         goto case State.BeginReadingPadding;
 
                                     // all other characters are considered invalid..
-                                    if ((_flags & Base64Settings.FlagIgnoreInvalidCharacters) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
                                         throw new FormatException(Resources.DecoderInvalidCharacter);
                                 }
 
@@ -208,7 +208,7 @@ namespace Fs.Binary.Codecs.Base64
                             _paddingRead = 1;
                             _paddingRequired = PadInfo[PadInfoRequiredPadding, _decodedCount];
 
-                            if ((_paddingRequired == 0) && ((_flags & Base64Settings.FlagIgnoreInvalidPadding) == 0))
+                            if ((_paddingRequired == 0) && ((_flags & SettingsFlags.FlagIgnoreInvalidPadding) == 0))
                                 throw new FormatException(Resources.DecoderInvalidPadding);
 
                             // reading state doesn't "use" the first padding character, so we have to..
@@ -225,7 +225,7 @@ namespace Fs.Binary.Codecs.Base64
                                     // character is invalid, if we're ignoring invalid characters then we can just keep
                                     // going otherwise, now is the time to fail..
 
-                                    if ((_flags & Base64Settings.FlagIgnoreInvalidCharacters) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
                                         throw new FormatException(Resources.DecoderInvalidCharacter);
 
                                     inputUsed++;
@@ -265,12 +265,12 @@ namespace Fs.Binary.Codecs.Base64
 
                                 // inputChar is always 127 or less here (due to check above)
                                 byte decodedValue = _decodingTable[inputChar];
-                                if (decodedValue == Base64Settings.CharSpecialPadding)
+                                if (decodedValue == SettingsCharacterTypes.CharSpecialPadding)
                                 {
                                     _paddingRead++;
                                     if (_paddingRead > _paddingRequired)
                                     {
-                                        if ((_flags & Base64Settings.FlagIgnoreInvalidPadding) == 0)
+                                        if ((_flags & SettingsFlags.FlagIgnoreInvalidPadding) == 0)
                                             throw new FormatException(Resources.DecoderInvalidPadding);
 
                                         // reset _paddingRead so that we don't overflow it..
@@ -280,10 +280,10 @@ namespace Fs.Binary.Codecs.Base64
                                     inputUsed++;
                                     continue;
                                 }
-                                else if ((decodedValue & Base64Settings.CharTypeMask) == Base64Settings.CharAlphabet)
+                                else if ((decodedValue & SettingsCharacterTypes.CharTypeMask) == SettingsCharacterTypes.CharAlphabet)
                                 {
                                     // all of the padding that we've read is invalid...
-                                    if ((_flags & Base64Settings.FlagIgnoreInvalidPadding) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidPadding) == 0)
                                         throw new FormatException(Resources.DecoderInvalidPadding);
 
                                     // go back to the reading state..
@@ -292,7 +292,7 @@ namespace Fs.Binary.Codecs.Base64
 
                                     goto case State.ContinueReading;
                                 }
-                                else if ((decodedValue == Base64Settings.CharSpecialIgnored) || ((_flags & Base64Settings.FlagIgnoreInvalidCharacters) != 0))
+                                else if ((decodedValue == SettingsCharacterTypes.CharSpecialIgnored) || ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) != 0))
                                 {
                                     // always ignored character, or invalid character that we are ignoring...
                                     inputUsed++;
@@ -313,20 +313,20 @@ namespace Fs.Binary.Codecs.Base64
                                 if (invalidQuantum)
                                 {
                                     // an incorrect number of characters in the last quantum..
-                                    if ((_flags & Base64Settings.FlagIgnoreInvalidFinalQuantum) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidFinalQuantum) == 0)
                                         throw new FormatException(Resources.DecoderTruncatedQuantum);
 
                                     // if we require padding, then this is an error state, because there is no correct
                                     // padding for an invalid last quantum..
 
-                                    if ((_flags & Base64Settings.FlagRequirePadding) != 0)
+                                    if ((_flags & SettingsFlags.FlagRequirePadding) != 0)
                                         throw new FormatException(Resources.DecoderInvalidPadding);
 
                                     // quantum is invalid, just clear it (because only invalid quantum is a quantum of 1)
                                     _decodedCount = 0;
                                 }
 
-                                if ((_flags & Base64Settings.FlagRequirePadding) != 0)
+                                if ((_flags & SettingsFlags.FlagRequirePadding) != 0)
                                 {
                                     // valid padding is required, there are few problems here. First is that
                                     // we may have an invalid quantum, which means any padding is invalid 
@@ -334,14 +334,14 @@ namespace Fs.Binary.Codecs.Base64
                                     var requiredPadding = PadInfo[PadInfoRequiredPadding, _decodedCount];
                                     if (_paddingRead < requiredPadding)
                                         throw new FormatException(Resources.DecoderPaddingRequired);
-                                    else if ((_paddingRead > requiredPadding) && ((_flags & Base64Settings.FlagIgnoreInvalidPadding) == 0))
+                                    else if ((_paddingRead > requiredPadding) && ((_flags & SettingsFlags.FlagIgnoreInvalidPadding) == 0))
                                         throw new FormatException(Resources.DecoderInvalidPadding);
                                 }
                             }
 
                             if (_decodedCount == 0) goto case State.Finished;
 
-                            if ((_flags & Base64Settings.FlagRequireTrailingZeroBits) != 0)
+                            if ((_flags & SettingsFlags.FlagRequireTrailingZeroBits) != 0)
                             {
                                 // ensure that the unused trailing bits are all zero, this can detect truncation
                                 // in some cases ..
@@ -358,7 +358,7 @@ namespace Fs.Binary.Codecs.Base64
                             goto case State.BeginWriting;
 
                         case State.Finished:
-                            if (((_flags & Base64Settings.FlagRequirePostfix) != 0) && (!_postfixRead))
+                            if (((_flags & SettingsFlags.FlagRequirePostfix) != 0) && (!_postfixRead))
                                 throw new FormatException(Resources.DecoderPostfixRequired);
 
                             _currentState = State.Reset;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
+using Fs.Binary.Codecs.Settings;
 
 namespace Fs.Binary.Codecs.QuotedPrintable
 {
@@ -12,16 +14,22 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             {
                 Reset,
 
-                BeginWritingPrefix,
-                WritingPrefix,
-                BeginWritingPostfix,
-                WritingPostfix,
+                //BeginWritingPrefix,
+                //WritingPrefix,
+                //BeginWritingPostfix,
+                //WritingPostfix,
+
                 BeginReading,
                 Reading,
+
                 BeginWriting,
-                Writing,
+                TryFastPathWriting,
+                WritingTick,
+                WritingHigh,
+                WritingLow,
+
                 BeginFlushing,
-                BeginFinalSeparator,
+
                 BeginSeparator,
                 WritingSeparator,
 
@@ -29,18 +37,17 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                 ReturnToPreviousState
             }
 
-            private readonly string _alphabet;
+            private readonly ImmutableArray<byte> _safeCharacters;
+            private readonly string _hexCharacters;
             private readonly string _lineSeparator;
-            private readonly string _initialAffix;
-            private readonly string _finalAffix;
             private readonly int _maximumLineLength;
             private readonly int _flags;
 
-            private uint _encodedBits;
-            private uint _encodedCount;
+            private byte _currentByte;
+            private int _currentByteIndex;
             private int _currentLineLength;
             private int _currentSeparatorIndex;
-            private int _currentAffixIndex;
+
             private State _currentState;
             private State _previousState;
 
@@ -52,20 +59,24 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                 // initialize all fields to defaults..
                 this = default;
 
-                //settings.GetEncoderSettings(
-                //    out _alphabet,
-                //    out _flags,
-                //    out _lineSeparator,
-                //    out _maximumLineLength,
-                //    out _initialAffix,
-                //    out _finalAffix
-                //);
+                settings.GetEncoderSettings(
+                    out _safeCharacters,
+                    out _flags,
+                    out _lineSeparator,
+                    out _maximumLineLength,
+                    out _hexCharacters);
+
+                // decrement maximumLineLength to account for required soft-breaks
+                // at the end of lines..
+
+                _maximumLineLength--;
 
                 Reset();
             }
 
             public void Reset ()
             {
+                _currentLineLength = 0;
                 _currentState = State.Reset;
                 _previousState = State.ReturnToPreviousState;
             }
@@ -74,7 +85,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             {
                 var inputEnd = inputIndex + inputCount;
                 var outputEnd = outputIndex + outputCount;
-                var hasSeparators = (_lineSeparator != null);
+                var hasSeparators = (_lineSeparator != null) && (_lineSeparator.Length != 0);
                 inputUsed = outputUsed = 0;
 
                 while (true)
@@ -83,110 +94,146 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                     {
                         case State.Reset:
                             Reset();
-                            goto case State.BeginWritingPrefix;
-
-                        case State.BeginWritingPrefix:
-                            _currentAffixIndex = 0;
-                            _currentState = State.WritingPrefix;
-                            goto case State.WritingPrefix;
-
-                        case State.WritingPrefix:
-                            while ((_currentAffixIndex < _initialAffix.Length) && (outputIndex < outputEnd))
-                            {
-                                if ((hasSeparators) && (_currentLineLength == _maximumLineLength))
-                                {
-                                    SetPreviousState(_currentState);
-                                    goto case State.BeginSeparator;
-                                }
-
-                                outputData[outputIndex++] = _initialAffix[_currentAffixIndex++];
-                                outputUsed++;
-                                unchecked { _currentLineLength++; };
-                            }
-
-                            if (_currentAffixIndex == _initialAffix.Length) goto case State.BeginReading;
-                            return ConvertStatus.OutputRequired;
-
-                        case State.BeginWritingPostfix:
-                            _currentAffixIndex = 0;
-                            _currentState = State.WritingPostfix;
-                            goto case State.WritingPostfix;
-
-                        case State.WritingPostfix:
-                            while ((_currentAffixIndex < _finalAffix.Length) && (outputIndex < outputEnd))
-                            {
-                                if ((hasSeparators) && (_currentLineLength == _maximumLineLength))
-                                {
-                                    SetPreviousState(_currentState);
-                                    goto case State.BeginSeparator;
-                                }
-
-                                outputData[outputIndex++] = _finalAffix[_currentAffixIndex++];
-                                outputUsed++;
-                                unchecked { _currentLineLength++; };
-                            }
-
-                            if (_currentAffixIndex == _finalAffix.Length) goto case State.BeginFinalSeparator;
-                            return ConvertStatus.OutputRequired;
+                            goto case State.BeginReading;
 
                         case State.BeginReading:
-                            _encodedBits = _encodedCount = 0;
                             _currentState = State.Reading;
                             goto case State.Reading;
 
                         case State.Reading:
-                            while ((_encodedCount < 4) && (inputIndex < inputEnd))
+                            while (inputIndex < inputEnd)
                             {
-                                _encodedBits = (_encodedBits << 8) | (inputData[inputIndex++]);
-                                _encodedCount++;
-                                inputUsed++;
+                                byte inputByte = inputData[inputIndex++];
+                                byte inputType = (inputByte < 128) ? _safeCharacters[inputByte] : (byte)SettingsCharacterTypes.CharSafeExcluded;
+                                if ((inputType & ~SettingsCharacterTypes.CharSafeFlagsMask) == SettingsCharacterTypes.CharSafe)
+                                {
+                                    if (outputIndex < outputEnd)
+                                    {
+                                        // if we've have separator and we've reached the end of the line, or the current
+                                        // character is whitespace and it would be the last character on a line, then
+                                        // write a line separator..
+
+                                        if ((hasSeparators) && (_currentLineLength == _maximumLineLength))
+                                        {
+                                            // backup inputIndex so that we read this character
+                                            inputIndex--;
+
+                                            // write a separator..
+                                            SetPreviousState(State.Reading);
+                                            goto case State.BeginSeparator;
+                                        }
+
+                                        // character is a safe character, write it directly to the output..
+                                        outputData[outputIndex++] = (char)inputByte;
+                                        inputUsed++;
+                                        outputUsed++;
+                                        unchecked { _currentLineLength++; }
+                                    }
+                                    else
+                                        // more output space is required..
+                                        return ConvertStatus.OutputRequired;
+                                }
+                                else // non-safe character..
+                                {
+                                    _currentByteIndex = 0;
+                                    _currentByte = inputByte;
+                                    inputUsed++;
+
+                                    goto case State.BeginWriting;
+                                }
                             }
 
-                            if (_encodedCount == 4) goto case State.BeginWriting;
                             if (flush) goto case State.BeginFlushing;
                             return ConvertStatus.InputRequired;
 
                         case State.BeginWriting:
-                            _currentState = State.Writing;
-                            goto case State.Writing;
-
-                        case State.Writing:
-                            while ((_encodedCount < 12) && (outputIndex < outputEnd))
+                            if ((hasSeparators) && (_currentLineLength + 3 > _maximumLineLength))
                             {
-                                if ((hasSeparators) && (_currentLineLength == _maximumLineLength))
-                                {
-                                    SetPreviousState(_currentState);
-                                    goto case State.BeginSeparator;
-                                }
+                                // the encoded output would exceed the maximum line length, write a separator
+                                // then write the encoded character..
 
-                                outputData[outputIndex++] = _alphabet[(int)((_encodedBits & 0xF0000000u) >> 28)];
-                                outputUsed++;
-                                _encodedBits <<= 4;
-                                _encodedCount++;
-                                unchecked { _currentLineLength++; };
+                                SetPreviousState(State.TryFastPathWriting);
+                                goto case State.BeginSeparator;
                             }
 
-                            if (_encodedCount == 12) goto case State.BeginReading;
+                            goto case State.TryFastPathWriting;
+
+                        case State.TryFastPathWriting:
+                            if (outputEnd - outputIndex >= 3)
+                            {
+                                outputData[outputIndex++] = '=';
+                                outputData[outputIndex++] = _hexCharacters[(_currentByte >> 4) & 0x0F];
+                                outputData[outputIndex++] = _hexCharacters[_currentByte & 0x0F];
+
+                                outputUsed += 3;
+                                unchecked { _currentLineLength += 3; }
+
+                                goto case State.BeginReading;
+                            }
+
+                            goto case State.WritingTick;
+
+                        case State.WritingTick:
+                            if (outputIndex < outputEnd)
+                            {
+                                outputData[outputIndex++] = '=';
+                                outputUsed++;
+                                unchecked { _currentLineLength++; }
+
+                                goto case State.WritingHigh;
+                            }
+
+                            _currentState = State.WritingTick;
+                            return ConvertStatus.OutputRequired;
+
+                        case State.WritingHigh:
+                            if (outputIndex < outputEnd)
+                            {
+                                outputData[outputIndex++] = _hexCharacters[(_currentByte >> 4) & 0x0F];
+                                outputUsed++;
+                                unchecked { _currentLineLength++; }
+
+                                goto case State.WritingLow;
+                            }
+
+                            _currentState = State.WritingHigh;
+                            return ConvertStatus.OutputRequired;
+
+                        case State.WritingLow:
+                            if (outputIndex < outputEnd)
+                            {
+                                outputData[outputIndex++] = _hexCharacters[_currentByte & 0x0F];
+                                outputUsed++;
+                                unchecked { _currentLineLength++; }
+
+                                goto case State.BeginReading;
+                            }
+
+                            _currentState = State.WritingLow;
                             return ConvertStatus.OutputRequired;
 
                         case State.BeginFlushing:
-                            if (_encodedCount == 0) goto case State.BeginWritingPostfix;
+                            // ignore force terminal line separator, it's always required if we have
+                            // separators..
 
-                            // partial data, State.Writing will write and return to State.Reading, which will
-                            // see there is no more data and transition to State.BeginFlushing, where we will
-                            // see _encodedCount == 0 and move on to State.BeginWritingPostfix...
+                            if ((hasSeparators) && (_currentLineLength != 0))
+                            {
+                                SetPreviousState(State.BeginFlushing);
+                                goto case State.BeginSeparator;
+                            }
 
-                            _encodedBits <<= 8 * (int)(4u - _encodedCount);
-                            _encodedCount = 12u - (_encodedCount * 2);
-                            goto case State.BeginWriting;
-
-                        case State.BeginFinalSeparator:
-                            if ((!hasSeparators) || ((_flags & QuotedPrintableSettings.FlagIncludeTerminatingLineSeparator) == 0)) goto case State.Finished;
-
-                            SetPreviousState(State.Finished);
-                            goto case State.BeginSeparator;
+                            goto case State.Finished;
 
                         case State.BeginSeparator:
+                            if (outputIndex == outputEnd)
+                            {
+                                _currentState = State.BeginSeparator;
+                                return ConvertStatus.OutputRequired;
+                            }
+
+                            outputData[outputIndex++] = '=';
+                            outputUsed++;
+
                             _currentLineLength = _currentSeparatorIndex = 0;
                             _currentState = State.WritingSeparator;
                             goto case State.WritingSeparator;
@@ -208,6 +255,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                         case State.ReturnToPreviousState:
                             System.Diagnostics.Debug.Assert(_previousState != State.ReturnToPreviousState);
                             _currentState = _previousState;
+                            _previousState = State.ReturnToPreviousState;
                             continue;
 
                         default:
@@ -217,154 +265,6 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                     throw new InvalidOperationException("Unreachable code, reached.");
                 }
             }
-
-            //public ConvertStatus ConvertData ( ReadOnlySpan<byte> inputData, int inputIndex, int inputCount, Span<char> outputData, int outputIndex, int outputCount, bool flush, out int inputUsed, out int outputUsed )
-            //{
-            //    var inputEnd = inputIndex + inputCount;
-            //    var outputEnd = outputIndex + outputCount;
-            //    var hasSeparators = (_lineSeparator != null);
-            //    inputUsed = outputUsed = 0;
-
-            //    while (true)
-            //    {
-            //        switch (_currentState)
-            //        {
-            //            case State.Reset:
-            //                Reset();
-            //                goto case State.BeginWritingPrefix;
-
-            //            case State.BeginWritingPrefix:
-            //                _currentAffixIndex = 0;
-            //                _currentState = State.WritingPrefix;
-            //                goto case State.WritingPrefix;
-
-            //            case State.WritingPrefix:
-            //                while ((_currentAffixIndex < _initialAffix.Length) && (outputIndex < outputEnd))
-            //                {
-            //                    if ((hasSeparators) && (_currentLineLength == _maximumLineLength))
-            //                    {
-            //                        SetPreviousState(_currentState);
-            //                        goto case State.BeginSeparator;
-            //                    }
-
-            //                    outputData[outputIndex++] = _initialAffix[_currentAffixIndex++];
-            //                    outputUsed++;
-            //                    unchecked { _currentLineLength++; };
-            //                }
-
-            //                if (_currentAffixIndex == _initialAffix.Length) goto case State.BeginReading;
-            //                return ConvertStatus.OutputRequired;
-
-            //            case State.BeginWritingPostfix:
-            //                _currentAffixIndex = 0;
-            //                _currentState = State.WritingPostfix;
-            //                goto case State.WritingPostfix;
-
-            //            case State.WritingPostfix:
-            //                while ((_currentAffixIndex < _finalAffix.Length) && (outputIndex < outputEnd))
-            //                {
-            //                    if ((hasSeparators) && (_currentLineLength == _maximumLineLength))
-            //                    {
-            //                        SetPreviousState(_currentState);
-            //                        goto case State.BeginSeparator;
-            //                    }
-
-            //                    outputData[outputIndex++] = _finalAffix[_currentAffixIndex++];
-            //                    outputUsed++;
-            //                    unchecked { _currentLineLength++; };
-            //                }
-
-            //                if (_currentAffixIndex == _finalAffix.Length) goto case State.BeginFinalSeparator;
-            //                return ConvertStatus.OutputRequired;
-
-            //            case State.BeginReading:
-            //                _encodedBits = _encodedCount = 0;
-            //                _currentState = State.Reading;
-            //                goto case State.Reading;
-
-            //            case State.Reading:
-            //                while ((_encodedCount < 4) && (inputIndex < inputEnd))
-            //                {
-            //                    _encodedBits = (_encodedBits << 8) | (inputData[inputIndex++]);
-            //                    _encodedCount++;
-            //                    inputUsed++;
-            //                }
-
-            //                if (_encodedCount == 4) goto case State.BeginWriting;
-            //                if (flush) goto case State.BeginFlushing;
-            //                return ConvertStatus.InputRequired;
-
-            //            case State.BeginWriting:
-            //                _currentState = State.Writing;
-            //                goto case State.Writing;
-
-            //            case State.Writing:
-            //                while ((_encodedCount < 12) && (outputIndex < outputEnd))
-            //                {
-            //                    if ((hasSeparators) && (_currentLineLength == _maximumLineLength))
-            //                    {
-            //                        SetPreviousState(_currentState);
-            //                        goto case State.BeginSeparator;
-            //                    }
-
-            //                    outputData[outputIndex++] = _alphabet[(int)((_encodedBits & 0xF0000000u) >> 28)];
-            //                    outputUsed++;
-            //                    _encodedBits <<= 4;
-            //                    _encodedCount++;
-            //                    unchecked { _currentLineLength++; };
-            //                }
-
-            //                if (_encodedCount == 12) goto case State.BeginReading;
-            //                return ConvertStatus.OutputRequired;
-
-            //            case State.BeginFlushing:
-            //                if (_encodedCount == 0) goto case State.BeginWritingPostfix;
-
-            //                // partial data, State.Writing will write and return to State.Reading, which will
-            //                // see there is no more data and transition to State.BeginFlushing, where we will
-            //                // see _encodedCount == 0 and move on to State.BeginWritingPostfix...
-
-            //                _encodedBits <<= 8 * (int)(4u - _encodedCount);
-            //                _encodedCount = 12u - (_encodedCount * 2);
-            //                goto case State.BeginWriting;
-
-            //            case State.BeginFinalSeparator:
-            //                if ((!hasSeparators) || ((_flags & QuotedPrintableSettings.FlagIncludeTerminatingLineSeparator) == 0)) goto case State.Finished;
-
-            //                SetPreviousState(State.Finished);
-            //                goto case State.BeginSeparator;
-
-            //            case State.BeginSeparator:
-            //                _currentLineLength = _currentSeparatorIndex = 0;
-            //                _currentState = State.WritingSeparator;
-            //                goto case State.WritingSeparator;
-
-            //            case State.WritingSeparator:
-            //                while ((_currentSeparatorIndex < _lineSeparator.Length) && (outputIndex < outputEnd))
-            //                {
-            //                    outputData[outputIndex++] = _lineSeparator[_currentSeparatorIndex++];
-            //                    outputUsed++;
-            //                }
-
-            //                if (_currentSeparatorIndex == _lineSeparator.Length) goto case State.ReturnToPreviousState;
-            //                return ConvertStatus.OutputRequired;
-
-            //            case State.Finished:
-            //                _currentState = State.Reset;
-            //                return ConvertStatus.Complete;
-
-            //            case State.ReturnToPreviousState:
-            //                System.Diagnostics.Debug.Assert(_previousState != State.ReturnToPreviousState);
-            //                _currentState = _previousState;
-            //                continue;
-
-            //            default:
-            //                break;
-            //        }
-
-            //        throw new InvalidOperationException("Unreachable code, reached.");
-            //    }
-            //}
 
             private void SetPreviousState ( State previousState )
             {

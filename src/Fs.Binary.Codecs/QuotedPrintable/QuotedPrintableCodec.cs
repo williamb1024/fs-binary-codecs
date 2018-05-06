@@ -174,10 +174,13 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             if (byteCount < 0)
                 throw new ArgumentOutOfRangeException(nameof(byteCount));
 
-            return (byteCount << 1) + Settings.EncodingAffixLength;
+            // TODO: ...
+            return 100;
+
+//            return (byteCount << 1) + Settings.EncodingAffixLength;
         }
 
-        public override int MinimumInputBuffer => Settings.GetMinimumInputBuffer();
+        public override int MinimumInputBuffer => 1; // TODO: .. Settings.GetMinimumInputBuffer();
         public override int MinimumOutputBuffer => 1;
 
         public QuotedPrintableSettings Settings { get; }

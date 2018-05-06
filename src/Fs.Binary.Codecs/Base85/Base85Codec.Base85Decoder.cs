@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
-using Fs.Binary.Codecs.Common;
+using Fs.Binary.Codecs.Settings;
 
 namespace Fs.Binary.Codecs.Base85
 {
@@ -82,7 +82,7 @@ namespace Fs.Binary.Codecs.Base85
                             goto case State.BeginReadingPrefix;
 
                         case State.BeginReadingPrefix:
-                            if ((_flags & Base85Settings.FlagHasPrefixes) == 0) goto case State.BeginReading;
+                            if ((_flags & SettingsFlags.FlagHasPrefixes) == 0) goto case State.BeginReading;
                             _currentState = State.ReadingPrefix;
                             goto case State.ReadingPrefix;
 
@@ -92,7 +92,7 @@ namespace Fs.Binary.Codecs.Base85
                                 if (matchLength < 0) // need more data..
                                     return ConvertStatus.InputRequired;
 
-                                if ((matchLength == 0) && ((_flags & Base85Settings.FlagRequirePrefix) != 0))
+                                if ((matchLength == 0) && ((_flags & SettingsFlags.FlagRequirePrefix) != 0))
                                     throw new FormatException(Resources.DecoderPrefixRequired);
 
                                 inputIndex += matchLength;
@@ -111,7 +111,7 @@ namespace Fs.Binary.Codecs.Base85
                                 char inputChar = inputData[inputIndex++];
                                 if (inputChar >= 128)
                                 {
-                                    if ((_flags & Base85Settings.FlagIgnoreInvalidCharacters) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
                                         throw new FormatException(Resources.DecoderInvalidCharacter);
 
                                     // ignoring invalid characters..
@@ -152,23 +152,23 @@ namespace Fs.Binary.Codecs.Base85
 
                                 // inputChar is always 127 or less here (due to check above)
                                 byte decodedValue = _decodingTable[inputChar];
-                                if ((decodedValue & Base85Settings.CharTypeMask) == Base85Settings.CharAlphabet)
+                                if ((decodedValue & SettingsCharacterTypes.CharTypeMask) == SettingsCharacterTypes.CharAlphabet)
                                 {
                                     _decodedBits = (_decodedBits * 85) + decodedValue;
                                     _decodedCount++;
                                 }
-                                else if ((decodedValue >= Base85Settings.CharSpecialZ) && (_decodedCount == 0))
+                                else if ((decodedValue >= SettingsCharacterTypes.CharSpecialZ) && (_decodedCount == 0))
                                 {
-                                    if (decodedValue == Base85Settings.CharSpecialY)
+                                    if (decodedValue == SettingsCharacterTypes.CharSpecialY)
                                         _decodedBits = 0x20202020ul;
 
                                     // special characters are abbreviations for 
                                     _decodedCount = 5;
                                 }
-                                else if (decodedValue != Base85Settings.CharSpecialIgnored)
+                                else if (decodedValue != SettingsCharacterTypes.CharSpecialIgnored)
                                 {
                                     // all non-ignored characters are treated as invalid..
-                                    if ((_flags & Base85Settings.FlagIgnoreInvalidCharacters) == 0)
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
                                         throw new FormatException(Resources.DecoderInvalidCharacter);
                                 }
 
@@ -185,7 +185,7 @@ namespace Fs.Binary.Codecs.Base85
                                 // 5 digits of base85 can exceed the maximum uint value, if it does, the encoding
                                 // is bad (but we can ignore if configured to do so)
 
-                                if ((_flags & Base85Settings.FlagIgnoreOverflow) == 0)
+                                if ((_flags & SettingsFlags.FlagIgnoreOverflow) == 0)
                                     throw new FormatException(Resources.DecoderOverflow);
 
                                 // ignoring overflow, discard any overflow bits .. anything we do here is going to
@@ -213,13 +213,13 @@ namespace Fs.Binary.Codecs.Base85
                         case State.Flushing:
                             if (_decodedCount == 0) goto case State.Finished;
 
-                            if (((_flags & Base85Settings.FlagRequireFullQuantum) != 0) || (_decodedCount == 1))
+                            if (((_flags & SettingsFlags.FlagRequireCompleteFinalQuantum) != 0) || (_decodedCount == 1))
                             {
                                 // configured to require a full quantum even at the end, if we're not
                                 // ignoring invalid quantums then we're in an error state.. or the quantum
                                 // is actually invalid (decodedCount == 1)
 
-                                if ((_flags & Base85Settings.FlagIgnoreInvalidFinalQuantum) == 0)
+                                if ((_flags & SettingsFlags.FlagIgnoreInvalidFinalQuantum) == 0)
                                     throw new FormatException(Resources.DecoderTruncatedQuantum);
 
                                 // nothing more to write..
@@ -238,7 +238,7 @@ namespace Fs.Binary.Codecs.Base85
                             goto case State.BeginWriting;
 
                         case State.Finished:
-                            if (((_flags & Base85Settings.FlagRequirePostfix) != 0) && (!_postfixRead))
+                            if (((_flags & SettingsFlags.FlagRequirePostfix) != 0) && (!_postfixRead))
                                 throw new FormatException(Resources.DecoderPostfixRequired);
 
                             _currentState = State.Reset;

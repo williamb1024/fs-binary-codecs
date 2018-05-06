@@ -201,7 +201,7 @@ namespace Fs.Binary.Codecs.Base64
             return maxChars;
         }
 
-        public override int MinimumInputBuffer => Settings.GetMinimumInputBuffer();
+        public override int MinimumInputBuffer => Settings.DecodingMinimumInputBuffer;
         public override int MinimumOutputBuffer => 1;
 
         public Base64Settings Settings { get; }

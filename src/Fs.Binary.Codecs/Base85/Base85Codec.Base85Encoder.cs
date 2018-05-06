@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Fs.Binary.Codecs.Settings;
 
 namespace Fs.Binary.Codecs.Base85
 {
@@ -88,6 +89,7 @@ namespace Fs.Binary.Codecs.Base85
 
             public void Reset ()
             {
+                _currentLineLength = 0;
                 _currentState = State.Reset;
                 _previousState = State.ReturnToPreviousState;
             }
@@ -96,7 +98,7 @@ namespace Fs.Binary.Codecs.Base85
             {
                 var inputEnd = inputIndex + inputCount;
                 var outputEnd = outputIndex + outputCount;
-                var hasSeparators = (_lineSeparator != null);
+                var hasSeparators = (_lineSeparator != null) && (_lineSeparator.Length != 0);
                 inputUsed = outputUsed = 0;
 
                 while (true)
@@ -248,7 +250,7 @@ namespace Fs.Binary.Codecs.Base85
 
                             _encodedBits <<= 8 * (int)(4u - _encodedCount);
 
-                            if ((_flags & Base85Settings.FlagForceFullQuantums) != 0)
+                            if ((_flags & SettingsFlags.FlagForceFullQuantums) != 0)
                             {
                                 // encoding complete quantums (btoa) -- caller is responsible for 
                                 // ensuring the actual length is written somewhere..
@@ -262,7 +264,7 @@ namespace Fs.Binary.Codecs.Base85
                             goto case State.BeginWritingPartial;
 
                         case State.BeginFinalSeparator:
-                            if ((!hasSeparators) || ((_flags & Base85Settings.FlagIncludeTerminatingLineSeparator) == 0)) goto case State.Finished;
+                            if ((!hasSeparators) || ((_flags & SettingsFlags.ForceTerminatingLineSeparator) == 0)) goto case State.Finished;
 
                             SetPreviousState(State.Finished);
                             goto case State.BeginSeparator;
@@ -289,6 +291,7 @@ namespace Fs.Binary.Codecs.Base85
                         case State.ReturnToPreviousState:
                             System.Diagnostics.Debug.Assert(_previousState != State.ReturnToPreviousState);
                             _currentState = _previousState;
+                            _previousState = State.ReturnToPreviousState;
                             continue;
 
                         default:
