@@ -12,7 +12,7 @@ namespace Fs.Binary.Codecs.Base85
         ISettingsEncodingLines, ISettingsDecodingCheckFinalQuantum, ISettingsTruncateFinalQuantum,
         ISettingsDecodingIgnoreOverflow
     {
-        private const int AlphabetSize = 64;
+        private const int AlphabetSize = 85;
         private static readonly string[] DefaultAlphabet = new string[]
         {
             "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstu"
@@ -56,6 +56,9 @@ namespace Fs.Binary.Codecs.Base85
                 throw new ArgumentNullException(nameof(inheritedSettings));
 
             InheritSettings(inheritedSettings);
+
+            _yCharacter = inheritedSettings._yCharacter;
+            _zCharacter = inheritedSettings._zCharacter;
         }
 
         private Base85Settings ( Base85Settings inheritedSettings, bool isProtected )

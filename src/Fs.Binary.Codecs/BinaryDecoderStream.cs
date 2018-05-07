@@ -101,9 +101,10 @@ namespace Fs.Binary.Codecs
                     break;
 
                 // if we've already had a partial read from the input, then we'll stop and wait
-                // for the next call to Read to access the underlying input reader again..
+                // for the next call to Read to access the underlying input reader again (unless we
+                // haven't produced any output yet, in which case we need to continue reading)
 
-                if (_isBlocked)
+                if ((_isBlocked) && (totalRead > 0))
                     break;
             }
 

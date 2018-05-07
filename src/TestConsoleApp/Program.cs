@@ -250,7 +250,7 @@ namespace TestConsoleApp
             //if (sb.ToString() == "")
             //    ;
 
-            //RoundTriping(BinaryCodecs.QuotedPrintable);
+            RoundTriping(BinaryCodecs.Ascii85);
 
             var rand = new Random(10);
 

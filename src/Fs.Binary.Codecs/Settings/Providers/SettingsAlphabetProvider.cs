@@ -93,6 +93,7 @@ namespace Fs.Binary.Codecs.Settings.Providers
             var inheritSettings = (SettingsAlphabetProvider)inheritedSettings;
             _alphabetLength = inheritSettings._alphabetLength;
             _alphabetStrings = inheritSettings._alphabetStrings;
+            _decodingTable = inheritSettings._decodingTable;
             _ignorableCharacters = inheritSettings._ignorableCharacters;
             _specialCharacters = inheritSettings._specialCharacters;
         }
