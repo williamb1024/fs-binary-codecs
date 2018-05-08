@@ -1,9 +1,10 @@
 # fs-binary-codecs
 Streamable binary to text encodings for .NET
 
-**WARNING!** Work in progress. 
+![NuGet](https://img.shields.io/nuget/v/Fs.Binary.Codecs.svg?style=plastic)
+![NuGet](https://img.shields.io/nuget/dt/Fs.Binary.Codecs.svg?style=plastic)
 
-Base16, Base32, Base64 and Base85 encodings work as intended.
+### Warning:
 QuotedPrintable non-functional
 
 
