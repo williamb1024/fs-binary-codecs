@@ -39,18 +39,15 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                 BeginWriteHardBreak,
                 WriteHardBreak,
 
-
                 BeginEscape,
                 Escape,
-                EscapeLowNibble,
-                EscapeCR,
-                EscapeLF,
-                EscapeWrite,
+                BeginContinueEscape,
+                ContinueEscape,
+                BeginWritingEscape,
+                WritingEscape,
 
-
-
-
-                Flushing,
+                BeginSoftBreak,
+                SoftBreak,
 
                 Finished,
                 ReturnToPreviousState
@@ -105,7 +102,6 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                             Reset();
                             goto case State.PassThrough;
 
-
                         case State.BeginPassThrough:
                             _currentState = State.PassThrough;
                             goto case State.PassThrough;
@@ -134,8 +130,19 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                                     continue;
                                 }
 
+                                if (inputChar == '=') goto case State.BeginEscape;
                                 if (inputChar == '\r') goto case State.BeginHardBreak;
+                                if ((inputChar == '\n') && ((_flags & SettingsFlags.FlagQpAcceptLFOnlyHardBreaks) != 0))
+                                {
+                                    // consume LF and write hard break..
+                                    inputIndex++;
+                                    inputUsed++;
+                                    goto case State.BeginWriteHardBreak;
+                                }
 
+                                // fail if we're not ignoring invalid characters..
+                                if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
+                                    throw new FormatException(Resources.DecoderGenericInvalidCharacter);
                             }
 
                             if (flush) goto case State.Finished;
@@ -161,12 +168,12 @@ namespace Fs.Binary.Codecs.QuotedPrintable
 
                                 // whitespace followed by anything other than a CR is important..
                                 if (inputChar != '\r') goto case State.BeginWriteLinearWhiteSpace;
-                                    
+
                                 // return to pass through state to handle this character..
                                 goto case State.BeginPassThrough;
                             }
 
-                            if (flush) goto case State.Finished; // TODO: must write any whitespace to output.. then we can finish..
+                            if (flush) goto case State.BeginWriteLinearWhiteSpace;
                             return ConvertStatus.InputRequired;
 
                         case State.BeginWriteLinearWhiteSpace:
@@ -263,106 +270,144 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                             if (_currentOffset == _hardBreakBytes.Length) goto case State.BeginPassThrough;
                             return ConvertStatus.OutputRequired;
 
-                        //case State.BeginEscape:
-                        //    _currentByte = 0;
-                        //    _currentState = State.Escape;
-                        //    goto case State.Escape;
+                        case State.BeginEscape:
+                            inputIndex++;
+                            inputUsed++;
+                            _currentByte = 0;
+                            _currentState = State.Escape;
+                            goto case State.Escape;
 
-                        //case State.Escape:
-                        //    if (inputIndex < inputEnd)
-                        //    {
-                        //        char inputChar = inputData[inputIndex++];
-                        //        byte inputValue = (inputChar < 128) ? _hexDecodingTable[inputChar] : SettingsCharacterTypes.CharSpecialInvalid;
-                        //        if ((inputValue & SettingsCharacterTypes.CharSpecial) == 0)
-                        //        {
-                        //            inputUsed++;
-                        //            _currentByte = (byte)(inputValue << 4);
-                        //            _currentState = State.EscapeLowNibble;
-                        //            goto case State.EscapeLowNibble;
-                        //        }
+                        case State.Escape:
+                            if (inputIndex < inputEnd)
+                            {
+                                char inputChar = inputData[inputIndex];
+                                if (inputChar == '\r') goto case State.BeginSoftBreak;
+                                if ((inputChar == '\n') && ((_flags & SettingsFlags.FlagQpAcceptLFOnlyHardBreaks) != 0))
+                                {
+                                    // soft-break in form "=\n" .. 
+                                    inputIndex++;
+                                    inputUsed++;
 
-                        //        if (inputChar == '\r') goto case State.EscapeCR;
-                        //        if (inputChar == '\n') goto case State.EscapeLF;
+                                    // escape complete, continue processing..
+                                    goto case State.BeginPassThrough;
+                                }
 
-                        //        // any other value is invalid..
-                        //        if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
-                        //            throw new FormatException(Resources.DecoderHexDigitOrLineBreakExpected);
+                                int inputType = (inputChar < 128) ? _hexDecodingTable[inputChar] : SettingsCharacterTypes.CharSpecialInvalid;
+                                if (inputType == SettingsCharacterTypes.CharSpecialInvalid)
+                                {
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
+                                        throw new FormatException(Resources.DecoderGenericInvalidCharacter);
 
-                        //        // re-read the current input character, discard the escape character..
-                        //        inputIndex--;
-                        //        goto case State.BeginReading;
-                        //    }
+                                    // ignoring invalid characters, just skip the equal..
+                                    goto case State.BeginPassThrough;
+                                }
 
-                        //    // TODO: must check flush here..
-                        //    return ConvertStatus.InputRequired;
+                                // consume character and continue to second escape character..
+                                inputIndex++;
+                                inputUsed++;
+                                _currentByte = (byte)inputType;
+                                goto case State.BeginContinueEscape;
+                            }
 
-                        //case State.EscapeLowNibble:
-                        //    if (inputIndex < inputEnd)
-                        //    {
-                        //        char inputChar = inputData[inputIndex++];
-                        //        byte inputValue = (inputChar < 128) ? _hexDecodingTable[inputChar] : SettingsCharacterTypes.CharSpecialInvalid;
-                        //        if ((inputValue & SettingsCharacterTypes.CharSpecial) == 0)
-                        //        {
-                        //            inputUsed++;
-                        //            _currentByte |= (byte)(inputValue & 0x0F);
-                        //            _currentState = State.EscapeWrite;
-                        //            goto case State.EscapeWrite;
-                        //        }
+                            if (flush)
+                            {
+                                // equal with nothing following is invalid..
+                                if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
+                                    throw new FormatException(Resources.DecoderGenericInvalidCharacter);
 
-                        //        // not a hex character, fail if not ignoring invalid characters..
-                        //        if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
-                        //            throw new FormatException(Resources.DecoderHexDigitOrLineBreakExpected);
+                                // ignore it, ..
+                                goto case State.Finished;
+                            }
 
-                        //        // adjust inputIndex to reread the current character and return to
-                        //        // reading..
+                            return ConvertStatus.InputRequired;
 
-                        //        inputIndex--;
-                        //        goto case State.BeginReading;
-                        //    }
+                        case State.BeginContinueEscape:
+                            _currentState = State.ContinueEscape;
+                            goto case State.ContinueEscape;
 
-                        //    // TODO: must check flush here..
-                        //    return ConvertStatus.InputRequired;
+                        case State.ContinueEscape:
+                            if (inputIndex < inputEnd)
+                            {
+                                char inputChar = inputData[inputIndex];
+                                int inputValue = (inputChar < 128) ? _hexDecodingTable[inputChar] : SettingsCharacterTypes.CharSpecialInvalid;
+                                if (inputValue == SettingsCharacterTypes.CharSpecialInvalid)
+                                {
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
+                                        throw new FormatException(Resources.DecoderGenericInvalidCharacter);
 
-                        //case State.EscapeCR:
-                        //    if (inputIndex < inputEnd)
-                        //    {
-                        //        char inputChar = inputData[inputIndex];
-                        //        if (inputChar == '\n') // soft-break?
-                        //        {
-                        //            inputIndex++;
-                        //            inputUsed += 2;
-                        //            goto case State.BeginReading;
-                        //        }
+                                    // ignore partial escape..
+                                    goto case State.BeginPassThrough;
+                                }
 
-                        //        if ((_flags & SettingsFlags.FlagQpAcceptCROnlyHardBreaks) != 0)
-                        //        {
+                                inputIndex++;
+                                inputUsed++;
+                                _currentByte = (byte)((_currentByte << 4) | (byte)(inputValue));
+                                goto case State.BeginWritingEscape;
+                            }
 
-                        //        }
+                            if (flush)
+                            {
+                                if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
+                                    throw new FormatException(Resources.DecoderGenericInvalidCharacter);
 
-                        //    }
+                                // partial escape is invalid, ignore the entire thing..
+                                goto case State.Finished;
+                            }
 
-                        //    break;
+                            return ConvertStatus.InputRequired;
 
-                        //case State.EscapeLF:
-                        //    if ((_flags & SettingsFlags.FlagQpAcceptLFOnlyHardBreaks) == 0)
-                        //    {
-                        //        if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
-                        //            throw new FormatException(Resources.DecoderGenericInvalidCharacter);
+                        case State.BeginWritingEscape:
+                            _currentState = State.WritingEscape;
+                            goto case State.WritingEscape;
 
-                        //        // ignoring invalid characters... do not re-read LF..
-                        //        inputUsed++;
-                        //        goto case State.BeginReading;
-                        //    }
+                        case State.WritingEscape:
+                            if (outputIndex < outputEnd)
+                            {
+                                outputData[outputIndex++] = _currentByte;
+                                outputUsed++;
 
-                        //    break;
+                                goto case State.BeginPassThrough;
+                            }
 
-                        //case State.EscapeWrite:
-                        //    break;
+                            return ConvertStatus.OutputRequired;
+
+                        case State.BeginSoftBreak:
+                            inputIndex++;
+                            inputUsed++;
+                            _currentState = State.SoftBreak;
+                            goto case State.SoftBreak;
+
+                        case State.SoftBreak:
+                            if (inputIndex < inputEnd)
+                            {
+                                int inputChar = inputData[inputIndex];
+                                if (inputChar == '\n')
+                                {
+                                    inputIndex++;
+                                    inputUsed++;
+                                }
+                                else if ((_flags & SettingsFlags.FlagQpAcceptCROnlyHardBreaks) == 0)
+                                {
+                                    if ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0)
+                                        throw new FormatException(Resources.DecoderGenericInvalidCharacter);
+                                }
+
+                                goto case State.BeginPassThrough;
+                            }
+
+                            if (flush)
+                            {
+                                if (((_flags & SettingsFlags.FlagQpAcceptCROnlyHardBreaks) == 0) &&
+                                    ((_flags & SettingsFlags.FlagIgnoreInvalidCharacters) == 0))
+                                    throw new FormatException(Resources.DecoderGenericInvalidCharacter);
+
+                                // ignore the CR, goto Finished state..
+                                goto case State.Finished;
+                            }
+
+                            return ConvertStatus.InputRequired;
 
                         case State.Finished:
-                            //if (((_flags & QuotedPrintableSettings.FlagRequirePostfix) != 0) && (!_postfixRead))
-                            //    throw new FormatException(Resources.DecoderPostfixRequired);
-
                             _currentState = State.Reset;
                             return ConvertStatus.Complete;
 

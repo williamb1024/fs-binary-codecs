@@ -120,5 +120,11 @@ namespace Fs.Binary.Codecs.Tests
         {
             StreamingTest(BinaryCodecs.Ascii85, 8192);
         }
+
+        [TestMethod]
+        public void QpStreaming ()
+        {
+            StreamingTest(BinaryCodecs.QuotedPrintable, 8192);
+        }
     }
 }

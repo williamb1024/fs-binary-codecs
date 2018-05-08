@@ -250,7 +250,9 @@ namespace TestConsoleApp
             //if (sb.ToString() == "")
             //    ;
 
-            BinaryCodecs.QuotedPrintable.GetBytes("    \t\t\t\t     \r\n\t\t\ta");
+            var b = BinaryCodecs.QuotedPrintable.GetBytes("=CD=\r\n");
+            if (b.Length == 1)
+                ;
 
 //            RoundTriping(BinaryCodecs.Ascii85);
 
