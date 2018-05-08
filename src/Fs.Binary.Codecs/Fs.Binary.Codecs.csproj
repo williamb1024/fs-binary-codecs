@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/williamb1024/fs-binary-codecs.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Base16 Base32 Base64 Base85 Ascii85 Stream Encoding Decoding Codec</PackageTags>
+    <PackageLicenseUrl>https://github.com/williamb1024/fs-binary-codecs/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
