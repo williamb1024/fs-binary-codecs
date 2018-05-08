@@ -14,11 +14,6 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             {
                 Reset,
 
-                //BeginWritingPrefix,
-                //WritingPrefix,
-                //BeginWritingPostfix,
-                //WritingPostfix,
-
                 BeginReading,
                 Reading,
 

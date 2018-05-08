@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFrameworks>net46;net47;netstandard2.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>William Brooks</Authors>
+    <Company />
+    <Description>Binary to text streaming codecs.</Description>
+    <Copyright>William Brooks</Copyright>
+    <PackageProjectUrl>https://github.com/williamb1024/fs-binary-codecs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/williamb1024/fs-binary-codecs.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Base16 Base32 Base64 Base85 Ascii85 Stream Encoding Decoding Codec</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
