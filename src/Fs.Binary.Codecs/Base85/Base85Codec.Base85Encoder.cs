@@ -302,6 +302,7 @@ namespace Fs.Binary.Codecs.Base85
                 }
             }
 
+            [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
             private void SetPreviousState ( State previousState )
             {
                 System.Diagnostics.Debug.Assert(_previousState == State.ReturnToPreviousState);

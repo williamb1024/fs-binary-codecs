@@ -47,6 +47,8 @@ namespace Fs.Binary.Codecs.QuotedPrintable
                 throw new ArgumentNullException(nameof(inheritedSettings));
 
             InheritSettings(inheritedSettings);
+
+            _decodingHardBreak = inheritedSettings._decodingHardBreak;
         }
 
         private QuotedPrintableSettings ( QuotedPrintableSettings inheritedSettings, bool isProtected )
@@ -70,10 +72,12 @@ namespace Fs.Binary.Codecs.QuotedPrintable
 
         internal void GetDecoderSettings ( out ImmutableArray<byte> safeCharacters,
                                            out ImmutableArray<byte> hexDecodingTable,
+                                           out string hardBreakChars,
                                            out int flags )
         {
             safeCharacters = _settingsSafeCharactersProvider.GetSafeCharacters();
             hexDecodingTable = Base16.Base16Settings.Default.GetHexDecoding();
+            hardBreakChars = _decodingHardBreak;
             flags = _settingsFlagsProvider.GetFlags();
         }
 
@@ -104,18 +108,19 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             }
         }
 
-        public string DecodingHardBreak
-        {
-            get => _decodingHardBreak;
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException(nameof(value));
+        // TODO: does this really make any sense for a "binary" codec?
+        //public string DecodingHardBreak
+        //{
+        //    get => _decodingHardBreak;
+        //    set
+        //    {
+        //        if (value == null)
+        //            throw new ArgumentNullException(nameof(value));
 
-                CheckWritable();
-                _decodingHardBreak = value;
-            }
-        }
+        //        CheckWritable();
+        //        _decodingHardBreak = value;
+        //    }
+        //}
 
         public string SafeCharacters { get => _settingsSafeCharactersProvider.SafeCharacters; set => _settingsSafeCharactersProvider.SafeCharacters = value; }
         public bool DecodingIgnoreInvalidCharacters { get => _settingsSafeCharactersProvider.DecodingIgnoreInvalidCharacters; set => _settingsSafeCharactersProvider.DecodingIgnoreInvalidCharacters = value; }

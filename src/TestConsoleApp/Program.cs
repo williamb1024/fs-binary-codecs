@@ -250,27 +250,29 @@ namespace TestConsoleApp
             //if (sb.ToString() == "")
             //    ;
 
-            RoundTriping(BinaryCodecs.Ascii85);
+            BinaryCodecs.QuotedPrintable.GetBytes("    \t\t\t\t     \r\n\t\t\ta");
 
-            var rand = new Random(10);
+//            RoundTriping(BinaryCodecs.Ascii85);
 
-            byte[] bs = new byte[400];
-            for (int i = 0; i < bs.Length; i++)
-                bs[i] = (byte)rand.Next(256);
+            //var rand = new Random(10);
 
-            for (int i = 0; i < 8; i++)
-                Console.Write("1234567890");
+            //byte[] bs = new byte[400];
+            //for (int i = 0; i < bs.Length; i++)
+            //    bs[i] = (byte)rand.Next(256);
 
-            Console.WriteLine();
-            for (int i = 0; i < 8; i++)
-                Console.Write($"         {i+1}");
+            //for (int i = 0; i < 8; i++)
+            //    Console.Write("1234567890");
 
-            Console.WriteLine();
+            //Console.WriteLine();
+            //for (int i = 0; i < 8; i++)
+            //    Console.Write($"         {i+1}");
+
+            //Console.WriteLine();
 
 
-            Console.WriteLine(BinaryCodecs.QuotedPrintable.GetBytes("          "));
+            //Console.WriteLine(BinaryCodecs.QuotedPrintable.GetBytes("          "));
 
-            Console.WriteLine(BinaryCodecs.QuotedPrintable.GetString(bs));
+            //Console.WriteLine(BinaryCodecs.QuotedPrintable.GetString(bs));
 
             //Console.WriteLine(Base85Codec.Standard.GetString(new byte[] { 0, 0, 0, 0 }));
             ////            Console.WriteLine(Encode(Base32BinaryEncoding.Standard, new byte[] { 0x31, 0x32, 0x33 }));
