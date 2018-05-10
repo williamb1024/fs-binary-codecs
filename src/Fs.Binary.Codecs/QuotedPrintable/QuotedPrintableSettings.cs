@@ -13,7 +13,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
     {
         private static readonly string DefaultAlphabet = "\t !\"#$%&'()*+,-./0123456789:;<>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
 
-        public static readonly QuotedPrintableSettings Default = new QuotedPrintableSettings()
+        public static readonly QuotedPrintableSettings Default = new QuotedPrintableSettings(true)
         {
             SafeCharacters = DefaultAlphabet,
             EncodingLineSeparator = "\r\n",
@@ -32,7 +32,12 @@ namespace Fs.Binary.Codecs.QuotedPrintable
 
         private string _decodingHardBreak = Environment.NewLine;
 
-        private QuotedPrintableSettings ()
+        public QuotedPrintableSettings ()
+            : this(Default)
+        {
+        }
+
+        private QuotedPrintableSettings ( bool isInternal )
             : base()
         {
             _settingsSafeCharactersProvider = new SettingsSafeCharactersProvider(this);
@@ -41,7 +46,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
         }
 
         public QuotedPrintableSettings ( QuotedPrintableSettings inheritedSettings )
-            : this()
+            : this(true)
         {
             if (inheritedSettings == null)
                 throw new ArgumentNullException(nameof(inheritedSettings));

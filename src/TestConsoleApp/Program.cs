@@ -246,9 +246,9 @@ namespace TestConsoleApp
             var encodedText = BinaryCodecs.Ascii85.GetString(inputBytes);
 
             var memStream = new MemoryStream();
-            var decodeWriter = new BinaryDecoderWriter(BinaryCodecs.Ascii85, memStream);
+            var decodeWriter = new BinaryDecoderWriter(BinaryCodecs.Base64Standard, memStream);
             for (int iIndex = 0; iIndex < encodedText.Length; iIndex++)
-                decodeWriter.Write(encodedText[iIndex]);
+                decodeWriter.WriteLine();
 
             decodeWriter.Flush();
 

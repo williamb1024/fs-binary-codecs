@@ -15,7 +15,7 @@ namespace Fs.Binary.Codecs.Base64
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
         };
 
-        public static readonly Base64Settings Default = new Base64Settings()
+        public static readonly Base64Settings Default = new Base64Settings(true)
         {
             Alphabets = DefaultAlphabet,
             PaddingCharacter = '=',
@@ -30,7 +30,12 @@ namespace Fs.Binary.Codecs.Base64
         private readonly SettingsDecodingCheckFinalQuantumProvider _decodingFinalQuantumProvider;
         private readonly SettingsPaddingProvider _paddingProvider;
 
-        private Base64Settings ()
+        public Base64Settings ()
+            : this(Base64Settings.Default)
+        {
+        }
+
+        private Base64Settings ( bool isInternal )
             : base()
         {
             _alphabetProvider = new SettingsAlphabetProvider(this, AlphabetSize);
@@ -43,7 +48,7 @@ namespace Fs.Binary.Codecs.Base64
         }
 
         public Base64Settings ( Base64Settings inheritedSettings )
-            : this()
+            : this(true)
         {
             if (inheritedSettings == null)
                 throw new ArgumentNullException(nameof(inheritedSettings));

@@ -15,7 +15,7 @@ namespace Fs.Binary.Codecs.Base85
             "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstu"
         };
 
-        public static readonly Base85Settings Default = new Base85Settings()
+        public static readonly Base85Settings Default = new Base85Settings(true)
         {
             Alphabets = DefaultAlphabet,
             IsProtected = true
@@ -33,7 +33,12 @@ namespace Fs.Binary.Codecs.Base85
         private char? _zCharacter;
         private char? _yCharacter;
 
-        private Base85Settings ()
+        public Base85Settings () 
+            : this(Base85Settings.Default)
+        {
+        }
+
+        private Base85Settings ( bool isInternal )
             : base()
         {
             _alphabetProvider = new SettingsAlphabetProvider(this, AlphabetSize);
@@ -47,7 +52,7 @@ namespace Fs.Binary.Codecs.Base85
         }
 
         public Base85Settings ( Base85Settings inheritedSettings )
-            : this()
+            : this(true)
         {
             if (inheritedSettings == null)
                 throw new ArgumentNullException(nameof(inheritedSettings));

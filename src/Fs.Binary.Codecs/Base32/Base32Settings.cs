@@ -16,7 +16,7 @@ namespace Fs.Binary.Codecs.Base32
             "abcdefghijklmnopqrstuvwxyz234567"
         };
 
-        public static readonly Base32Settings Default = new Base32Settings()
+        public static readonly Base32Settings Default = new Base32Settings(true)
         {
             Alphabets = DefaultAlphabet,
             PaddingCharacter = '=',
@@ -31,7 +31,12 @@ namespace Fs.Binary.Codecs.Base32
         private readonly SettingsDecodingCheckFinalQuantumProvider _decodingFinalQuantumProvider;
         private readonly SettingsPaddingProvider _paddingProvider;
 
-        private Base32Settings ()
+        public Base32Settings ()
+            : this(Default)
+        {
+        }
+
+        private Base32Settings ( bool isInternal )
             : base()
         {
             _alphabetProvider = new SettingsAlphabetProvider(this, AlphabetSize);
@@ -44,7 +49,7 @@ namespace Fs.Binary.Codecs.Base32
         }
 
         public Base32Settings ( Base32Settings inheritedSettings )
-            : this()
+            : this(true)
         {
             if (inheritedSettings == null)
                 throw new ArgumentNullException(nameof(inheritedSettings));

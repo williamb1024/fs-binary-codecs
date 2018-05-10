@@ -16,7 +16,7 @@ namespace Fs.Binary.Codecs.Base16
             "0123456789abcdef",
         };
 
-        public static readonly Base16Settings Default = new Base16Settings()
+        public static readonly Base16Settings Default = new Base16Settings(true)
         {
             Alphabets = DefaultAlphabet,
             IsProtected = true
@@ -29,7 +29,12 @@ namespace Fs.Binary.Codecs.Base16
         private readonly SettingsEncodingLinesProvider _encodingLines;
         private readonly SettingsDecodingCheckFinalQuantumProvider _decodingFinalQuantumProvider;
 
-        private Base16Settings ()
+        public Base16Settings ()
+            : this(Default)
+        {
+        }
+
+        private Base16Settings ( bool isInternal )
             : base()
         {
             _alphabetProvider = new SettingsAlphabetProvider(this, AlphabetSize);
@@ -41,7 +46,7 @@ namespace Fs.Binary.Codecs.Base16
         }
 
         public Base16Settings ( Base16Settings inheritedSettings )
-            : this()
+            : this(true)
         {
             if (inheritedSettings == null)
                 throw new ArgumentNullException(nameof(inheritedSettings));
