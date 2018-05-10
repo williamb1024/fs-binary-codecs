@@ -37,37 +37,28 @@ namespace Fs.Binary.Codecs
                                        out int inputUsed,
                                        out int outputUsed )
         {
-            // TODO: ...
-            if (inputData == null)
-                ;
+            if ((inputIndex < 0) || (outputIndex < 0))
+                throw new ArgumentOutOfRangeException((inputIndex < 0) ? nameof(inputIndex) : nameof(outputIndex));
 
-            if ((inputData.IsEmpty) || (outputData.IsEmpty))
-                throw new ArgumentException();
+            if ((inputCount < 0) || (outputCount < 0))
+                throw new ArgumentOutOfRangeException((inputCount < 0) ? nameof(inputCount) : nameof(outputCount));
 
-            inputUsed = outputUsed = 0;
-            return default;
+            if ((inputData.Length - inputIndex < inputCount) || (outputData.Length - outputIndex < outputCount))
+                throw new ArgumentException(Resources.InvalidIndexCountLength);
+
+            return ConvertData(inputData, inputIndex, inputCount,
+                               outputData, outputIndex, outputCount,
+                               flush,
+                               out inputUsed,
+                               out outputUsed);
         }
 
         public abstract void Reset ();
 
-        protected virtual ConvertStatus ConvertData ( ReadOnlySpan<char> inputData, int inputIndex, int inputCount, 
-                                                      Span<byte> outputData, int outputIndex, int outputCount, 
+        protected abstract ConvertStatus ConvertData ( ReadOnlySpan<char> inputData, int inputIndex, int inputCount,
+                                                      Span<byte> outputData, int outputIndex, int outputCount,
                                                       bool flush,
                                                       out int inputUsed,
-                                                      out int outputUsed )
-        {
-            // TODO: make abstract..
-            throw new NotSupportedException();
-        }
-
-        protected virtual ConvertStatus ConvertData ( char[] inputData, int inputIndex, int inputCount,
-                                                       byte[] outputData, int outputIndex, int outputCount,
-                                                       bool flush,
-                                                       out int inputUsed,
-                                                       out int outputUsed )
-        {
-            // TODO: remove me completely...
-            throw new NotImplementedException();
-        }
+                                                      out int outputUsed );
     }
 }

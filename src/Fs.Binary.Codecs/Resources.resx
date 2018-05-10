@@ -141,6 +141,9 @@
   <data name="AlphabetOrdinalMustBeByte" xml:space="preserve">
     <value>The ordinal value of all characters in the alphabet must be 127 or less.</value>
   </data>
+  <data name="CodecMadeNoProgress" xml:space="preserve">
+    <value>The codec was unable to make progress with a full buffer. This is the result of an internal error.</value>
+  </data>
   <data name="DecoderGenericInvalidCharacter" xml:space="preserve">
     <value>The data contains one or more characters that are not allowed or an invalid combination of characters.</value>
   </data>
@@ -179,5 +182,8 @@
   </data>
   <data name="InvalidOffsetCountLength" xml:space="preserve">
     <value>Offset and length were out of bounds for the array or count is greater than the number of elements from offset to the end of the source collection.</value>
+  </data>
+  <data name="WouldExceedBuffer" xml:space="preserve">
+    <value>The incoming data would exceed the maximum length of the internal buffer.</value>
   </data>
 </root>

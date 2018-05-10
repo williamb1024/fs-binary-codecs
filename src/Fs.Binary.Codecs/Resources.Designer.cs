@@ -133,6 +133,15 @@ namespace Fs.Binary.Codecs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The codec was unable to make progress with a full buffer. This is the result of an internal error..
+        /// </summary>
+        internal static string CodecMadeNoProgress {
+            get {
+                return ResourceManager.GetString("CodecMadeNoProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The data contains one or more characters that are not allowed or an invalid combination of characters..
         /// </summary>
         internal static string DecoderGenericInvalidCharacter {
@@ -246,6 +255,15 @@ namespace Fs.Binary.Codecs {
         internal static string InvalidOffsetCountLength {
             get {
                 return ResourceManager.GetString("InvalidOffsetCountLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The incoming data would exceed the maximum length of the internal buffer..
+        /// </summary>
+        internal static string WouldExceedBuffer {
+            get {
+                return ResourceManager.GetString("WouldExceedBuffer", resourceCulture);
             }
         }
     }

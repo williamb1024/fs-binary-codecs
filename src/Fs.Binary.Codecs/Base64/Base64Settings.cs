@@ -7,8 +7,7 @@ using Fs.Binary.Codecs.Settings.Providers;
 
 namespace Fs.Binary.Codecs.Base64
 {
-    public class Base64Settings : SettingsBase, ISettingsAlphabet, ISettingsDecodingAffixes, ISettingsEncodingAffixes,
-        ISettingsEncodingLines, ISettingsDecodingCheckFinalQuantum, ISettingsPadding
+    public class Base64Settings : SettingsBase
     {
         private const int AlphabetSize = 64;
         private static readonly string[] DefaultAlphabet = new string[]

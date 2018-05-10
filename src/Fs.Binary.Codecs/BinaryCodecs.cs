@@ -37,6 +37,18 @@ namespace Fs.Binary.Codecs
                 IsProtected = true
             }));
 
+        public static BinaryCodec Base64UrlSafe => _base64UrlSafe.Value;
+        private static readonly Lazy<BinaryCodec> _base64UrlSafe =
+            new Lazy<BinaryCodec>(() => new Base64Codec(new Base64Settings(Base64Settings.Default)
+            {
+                Alphabets = new string[] { "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_" },
+                DecodingIgnorableCharacters = "\r\n \t\v",
+                DecodingIgnoreInvalidCharacters = true,
+                DecodingIgnoreInvalidPadding = true,
+                EncodingNoPadding = true,
+                IsProtected = true
+            }));
+
         public static BinaryCodec Base85Standard => _base85Standard.Value;
         private static readonly Lazy<BinaryCodec> _base85Standard =
             new Lazy<BinaryCodec>(() => new Base85Codec(Base85Settings.Default));

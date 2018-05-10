@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fs.Binary.Codecs;
+using Fs.Binary.Codecs.Streaming;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Fs.Binary.Codecs.Tests
@@ -63,6 +64,34 @@ namespace Fs.Binary.Codecs.Tests
             }
         }
 
+        private static byte[] DecodeThroughTextWriter ( BinaryCodec codec, string inputData )
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                var random = new Random(5);
+                int inputOffset = 0;
+                int inputLength = inputData.Length;
+
+                using (var codecWriter = new BinaryDecoderWriter(codec, memoryStream))
+                {
+                    while (true)
+                    {
+                        int charsToProcess = (inputLength > 0) ? random.Next(1, inputLength) : 0;
+                        if (charsToProcess == 0)
+                            break;
+
+                        codecWriter.Write(inputData.Substring(inputOffset, charsToProcess));
+                        inputOffset += charsToProcess;
+                        inputLength -= charsToProcess;
+                    }
+
+                    codecWriter.Flush();
+                }
+
+                return memoryStream.ToArray();
+            }
+        }
+
         private static byte[] GenerateData ( int dataLength )
         {
             if (dataLength < 0)
@@ -85,6 +114,11 @@ namespace Fs.Binary.Codecs.Tests
             {
                 var inputData = GenerateData(currentSize);
                 var encodedData = EncodeThroughStream(codec, inputData);
+                var writerDecodedData = DecodeThroughTextWriter(codec, encodedData);
+
+                Assert.AreEqual(currentSize, writerDecodedData.Length, "Writer Decoded Length != input length");
+                CollectionAssert.AreEqual(inputData, writerDecodedData, "Writer Decoded Data != input data");
+
                 var outputData = codec.GetBytes(encodedData);
 
                 Assert.AreEqual(outputData.Length, inputData.Length, "Output and Input must be same length.");

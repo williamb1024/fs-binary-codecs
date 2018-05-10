@@ -7,8 +7,7 @@ using Fs.Binary.Codecs.Settings.Providers;
 
 namespace Fs.Binary.Codecs.Base16
 {
-    public class Base16Settings : SettingsBase, ISettingsAlphabet, ISettingsDecodingAffixes, ISettingsEncodingAffixes,
-        ISettingsEncodingLines, ISettingsDecodingCheckFinalQuantum
+    public class Base16Settings : SettingsBase
     {
         private const int AlphabetSize = 16;
         private static readonly string[] DefaultAlphabet = new string[]

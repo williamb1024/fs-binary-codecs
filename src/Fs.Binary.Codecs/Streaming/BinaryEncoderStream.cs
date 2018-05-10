@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Fs.Binary.Codecs
+namespace Fs.Binary.Codecs.Streaming
 {
     public class BinaryEncoderStream : Stream
     {

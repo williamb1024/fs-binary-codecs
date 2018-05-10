@@ -7,10 +7,7 @@ using Fs.Binary.Codecs.Settings.Providers;
 
 namespace Fs.Binary.Codecs.Base85
 {
-    public class Base85Settings : SettingsBase, 
-        ISettingsAlphabet, ISettingsDecodingAffixes, ISettingsEncodingAffixes,
-        ISettingsEncodingLines, ISettingsDecodingCheckFinalQuantum, ISettingsTruncateFinalQuantum,
-        ISettingsDecodingIgnoreOverflow
+    public class Base85Settings : SettingsBase
     {
         private const int AlphabetSize = 85;
         private static readonly string[] DefaultAlphabet = new string[]
