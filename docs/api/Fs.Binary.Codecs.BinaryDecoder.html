@@ -73,7 +73,8 @@
   
   <h1 id="Fs_Binary_Codecs_BinaryDecoder" data-uid="Fs.Binary.Codecs.BinaryDecoder" class="text-break">Class BinaryDecoder
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>A base class for all binary-to-text decoders.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -93,11 +94,12 @@
     <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_BinaryDecoder_Convert_ReadOnlySpan_System_Char__System_Int32_System_Int32_Span_System_Byte__System_Int32_System_Int32_System_Boolean_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.BinaryDecoder.Convert(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Int32%2CSystem.Int32%2CSpan%7BSystem.Byte%7D%2CSystem.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L34">View Source</a>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L71">View Source</a>
   </span>
   <a id="Fs_Binary_Codecs_BinaryDecoder_Convert_" data-uid="Fs.Binary.Codecs.BinaryDecoder.Convert*"></a>
   <h4 id="Fs_Binary_Codecs_BinaryDecoder_Convert_ReadOnlySpan_System_Char__System_Int32_System_Int32_Span_System_Byte__System_Int32_System_Int32_System_Boolean_System_Int32__System_Int32__" data-uid="Fs.Binary.Codecs.BinaryDecoder.Convert(ReadOnlySpan{System.Char},System.Int32,System.Int32,Span{System.Byte},System.Int32,System.Int32,System.Boolean,System.Int32@,System.Int32@)">Convert(ReadOnlySpan&lt;Char&gt;, Int32, Int32, Span&lt;Byte&gt;, Int32, Int32, Boolean, out Int32, out Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Decodes a sequence of characters into a sequence of bytes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -116,47 +118,56 @@
       <tr>
         <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
         <td><span class="parametername">inputData</span></td>
-        <td></td>
+        <td><p>The array containing the sequence of characters to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputIndex</span></td>
-        <td></td>
+        <td><p>The index of the first character to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputCount</span></td>
-        <td></td>
+        <td><p>The number of characters to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">outputData</span></td>
-        <td></td>
+        <td><p>The array where the output bytes will be stored.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputIndex</span></td>
-        <td></td>
+        <td><p>The index of the first output byte.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputCount</span></td>
-        <td></td>
+        <td><p>The number of bytes that can be stored in the output.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">flush</span></td>
-        <td></td>
+        <td><p><code>true</code> if no more input will be available; otherwise, <code>false</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputUsed</span></td>
-        <td></td>
+        <td><p>On return, the number of characters consumed from <code data-dev-comment-type="paramref" class="paramref">inputData</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputUsed</span></td>
-        <td></td>
+        <td><p>On return, the number of bytes written to <code data-dev-comment-type="paramref" class="paramref">outputData</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -171,7 +182,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Fs.Binary.Codecs.ConvertStatus.html">ConvertStatus</a></td>
-        <td></td>
+        <td><p>A <a class="xref" href="Fs.Binary.Codecs.ConvertStatus.html">ConvertStatus</a> indicating the status of the conversion.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -180,11 +192,12 @@
     <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_BinaryDecoder_Convert_System_Char___System_Int32_System_Int32_System_Byte___System_Int32_System_Int32_System_Boolean_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.BinaryDecoder.Convert(System.Char%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L9">View Source</a>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L29">View Source</a>
   </span>
   <a id="Fs_Binary_Codecs_BinaryDecoder_Convert_" data-uid="Fs.Binary.Codecs.BinaryDecoder.Convert*"></a>
   <h4 id="Fs_Binary_Codecs_BinaryDecoder_Convert_System_Char___System_Int32_System_Int32_System_Byte___System_Int32_System_Int32_System_Boolean_System_Int32__System_Int32__" data-uid="Fs.Binary.Codecs.BinaryDecoder.Convert(System.Char[],System.Int32,System.Int32,System.Byte[],System.Int32,System.Int32,System.Boolean,System.Int32@,System.Int32@)">Convert(Char[], Int32, Int32, Byte[], Int32, Int32, Boolean, out Int32, out Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Decodes a sequence of characters into a sequence of bytes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -203,47 +216,56 @@
       <tr>
         <td><span class="xref">System.Char</span>[]</td>
         <td><span class="parametername">inputData</span></td>
-        <td></td>
+        <td><p>The array containing the sequence of characters to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputIndex</span></td>
-        <td></td>
+        <td><p>The index of the first character to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputCount</span></td>
-        <td></td>
+        <td><p>The number of characters to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">outputData</span></td>
-        <td></td>
+        <td><p>The array where the output bytes will be stored.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputIndex</span></td>
-        <td></td>
+        <td><p>The index of the first output byte.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputCount</span></td>
-        <td></td>
+        <td><p>The number of bytes that can be stored in the output.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">flush</span></td>
-        <td></td>
+        <td><p><code>true</code> if no more input will be available; otherwise, <code>false</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputUsed</span></td>
-        <td></td>
+        <td><p>On return, the number of characters consumed from <code data-dev-comment-type="paramref" class="paramref">inputData</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputUsed</span></td>
-        <td></td>
+        <td><p>On return, the number of bytes written to <code data-dev-comment-type="paramref" class="paramref">outputData</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -258,7 +280,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Fs.Binary.Codecs.ConvertStatus.html">ConvertStatus</a></td>
-        <td></td>
+        <td><p>A <a class="xref" href="Fs.Binary.Codecs.ConvertStatus.html">ConvertStatus</a> indicating the status of the conversion.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -267,11 +290,12 @@
     <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_BinaryDecoder_ConvertData_ReadOnlySpan_System_Char__System_Int32_System_Int32_Span_System_Byte__System_Int32_System_Int32_System_Boolean_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.BinaryDecoder.ConvertData(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Int32%2CSystem.Int32%2CSpan%7BSystem.Byte%7D%2CSystem.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L58">View Source</a>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L115">View Source</a>
   </span>
   <a id="Fs_Binary_Codecs_BinaryDecoder_ConvertData_" data-uid="Fs.Binary.Codecs.BinaryDecoder.ConvertData*"></a>
   <h4 id="Fs_Binary_Codecs_BinaryDecoder_ConvertData_ReadOnlySpan_System_Char__System_Int32_System_Int32_Span_System_Byte__System_Int32_System_Int32_System_Boolean_System_Int32__System_Int32__" data-uid="Fs.Binary.Codecs.BinaryDecoder.ConvertData(ReadOnlySpan{System.Char},System.Int32,System.Int32,Span{System.Byte},System.Int32,System.Int32,System.Boolean,System.Int32@,System.Int32@)">ConvertData(ReadOnlySpan&lt;Char&gt;, Int32, Int32, Span&lt;Byte&gt;, Int32, Int32, Boolean, out Int32, out Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Decodes a sequence of characters into a sequence of bytes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -290,47 +314,56 @@
       <tr>
         <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
         <td><span class="parametername">inputData</span></td>
-        <td></td>
+        <td><p>The array containing the sequence of characters to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputIndex</span></td>
-        <td></td>
+        <td><p>The index of the first character to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputCount</span></td>
-        <td></td>
+        <td><p>The number of characters to decode.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">outputData</span></td>
-        <td></td>
+        <td><p>The array where the output bytes will be stored.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputIndex</span></td>
-        <td></td>
+        <td><p>The index of the first output byte.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputCount</span></td>
-        <td></td>
+        <td><p>The number of bytes that can be stored in the output.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">flush</span></td>
-        <td></td>
+        <td><p><code>true</code> if no more input will be available; otherwise, <code>false</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">inputUsed</span></td>
-        <td></td>
+        <td><p>On return, the number of characters consumed from <code data-dev-comment-type="paramref" class="paramref">inputData</code>.</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">outputUsed</span></td>
-        <td></td>
+        <td><p>On return, the number of bytes written to <code data-dev-comment-type="paramref" class="paramref">outputData</code>.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -345,7 +378,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Fs.Binary.Codecs.ConvertStatus.html">ConvertStatus</a></td>
-        <td></td>
+        <td><p>A <a class="xref" href="Fs.Binary.Codecs.ConvertStatus.html">ConvertStatus</a> indicating the status of the conversion.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -354,11 +388,12 @@
     <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_BinaryDecoder_Reset.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.BinaryDecoder.Reset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L56">View Source</a>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L96">View Source</a>
   </span>
   <a id="Fs_Binary_Codecs_BinaryDecoder_Reset_" data-uid="Fs.Binary.Codecs.BinaryDecoder.Reset*"></a>
   <h4 id="Fs_Binary_Codecs_BinaryDecoder_Reset" data-uid="Fs.Binary.Codecs.BinaryDecoder.Reset">Reset()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Resets the state of the decoder.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -375,7 +410,7 @@
                     <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_BinaryDecoder.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.BinaryDecoder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L7" class="contribution-link">View Source</a>
+                    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/BinaryDecoder.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

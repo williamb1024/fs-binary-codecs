@@ -29,6 +29,9 @@ namespace Fs.Binary.Codecs.Base16
         private readonly SettingsEncodingLinesProvider _encodingLines;
         private readonly SettingsDecodingCheckFinalQuantumProvider _decodingFinalQuantumProvider;
 
+        /// <summary>
+        /// Creates a new instance of the class with default settings.
+        /// </summary>
         public Base16Settings ()
             : this(Default)
         {
@@ -45,6 +48,11 @@ namespace Fs.Binary.Codecs.Base16
             _flagsProvider = new SettingsFlagsProvider(this);
         }
 
+        /// <summary>
+        /// Creates a new instance of the class with settings supplied by <paramref name="inheritedSettings"/>.
+        /// </summary>
+        /// <param name="inheritedSettings">The settings to duplicate.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="inheritedSettings"/> is <c>null</c>.</exception>
         public Base16Settings ( Base16Settings inheritedSettings )
             : this(true)
         {
@@ -92,6 +100,10 @@ namespace Fs.Binary.Codecs.Base16
         internal string GetHexEncoding () => _alphabetProvider.GetEncodingAlphabet();
         internal ImmutableArray<byte> GetHexDecoding () => _alphabetProvider.GetDecodingTable();
 
+        /// <summary>
+        /// Creates a read-only copy of this instance.
+        /// </summary>
+        /// <returns>A read-only copy of this instance.</returns>
         public Base16Settings ToReadOnly () => (IsProtected) ? this : new Base16Settings(this, true);
 
         public string[] Alphabets { get => _alphabetProvider.Alphabets; set => _alphabetProvider.Alphabets = value; }
