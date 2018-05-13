@@ -9,12 +9,28 @@ namespace Fs.Binary.Codecs.Streaming
 {
     public class BinaryEncoderReader : TextReader
     {
+        private const int DefaultBufferSize = 4096;
+
         private readonly Stream _inputStream;
+        private readonly BinaryCodec _codec;
         private readonly bool _closeStream;
 
         public BinaryEncoderReader ( BinaryCodec codec, Stream inputStream, int? bufferSize = null, bool closeStream = true )
         {
+            if (codec == null)
+                throw new ArgumentNullException(nameof(codec));
+
+            if (inputStream == null)
+                throw new ArgumentNullException(nameof(inputStream));
+
+            _codec = codec;
+            _inputStream = inputStream;
             _closeStream = closeStream;
+
+            int actualBufferSize = bufferSize ?? DefaultBufferSize;
+            //if (actualBufferSize < _codec.MinimumInputBuffer)
+
+
         }
 
         protected override void Dispose ( bool disposing )

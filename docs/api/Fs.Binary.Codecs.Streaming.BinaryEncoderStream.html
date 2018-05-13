@@ -1,0 +1,563 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BinaryEncoderStream
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BinaryEncoderStream
+   ">
+    <meta name="generator" content="docfx 2.35.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream">
+  
+  
+  <h1 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream" class="text-break">Class BinaryEncoderStream
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">BinaryEncoderStream</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Fs.Binary.Codecs.Streaming.html">Fs.Binary.Codecs.Streaming</a></h6>
+  <h6><strong>Assembly</strong>: Fs.Binary.Codecs.dll</h6>
+  <h5 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BinaryEncoderStream : Stream</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream__ctor_Fs_Binary_Codecs_BinaryCodec_TextWriter_System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.%23ctor(Fs.Binary.Codecs.BinaryCodec%2CTextWriter%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L21">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream__ctor_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.#ctor*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream__ctor_Fs_Binary_Codecs_BinaryCodec_TextWriter_System_Nullable_System_Int32__System_Boolean_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.#ctor(Fs.Binary.Codecs.BinaryCodec,TextWriter,System.Nullable{System.Int32},System.Boolean)">BinaryEncoderStream(BinaryCodec, TextWriter, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BinaryEncoderStream(BinaryCodec codec, TextWriter outputWriter, int? bufferLength = null, bool closeWriter = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html">BinaryCodec</a></td>
+        <td><span class="parametername">codec</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">TextWriter</span></td>
+        <td><span class="parametername">outputWriter</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">bufferLength</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">closeWriter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanRead.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanRead%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L239">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanRead_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanRead*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanRead" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanRead">CanRead</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanRead { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanSeek.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanSeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L241">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanSeek_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanSeek*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanSeek" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanSeek">CanSeek</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanSeek { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanWrite.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanWrite%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L243">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanWrite_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanWrite*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_CanWrite" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.CanWrite">CanWrite</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanWrite { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Length.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L245">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Length_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Length*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Length" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Length">Length</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Position.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Position%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L247">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Position_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Position*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Position" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Position">Position</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L40">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Dispose_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Dispose*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Dispose_System_Boolean_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Flush.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Flush%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L203">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Flush_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Flush*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Flush" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Flush">Flush()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Flush()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L198">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Read_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Read*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Read_System_Byte___System_Int32_System_Int32_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Read(System.Byte[],System.Int32,System.Int32)">Read(Byte[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Read(byte[] buffer, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Seek_System_Int64_SeekOrigin_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Seek(System.Int64%2CSeekOrigin)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L226">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Seek_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Seek*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Seek_System_Int64_SeekOrigin_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Seek(System.Int64,SeekOrigin)">Seek(Int64, SeekOrigin)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Seek(long offset, SeekOrigin origin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">SeekOrigin</span></td>
+        <td><span class="parametername">origin</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_SetLength_System_Int64_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.SetLength(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L234">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_SetLength_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.SetLength*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_SetLength_System_Int64_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.SetLength(System.Int64)">SetLength(Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetLength(long value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L64">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Write_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Write*"></a>
+  <h4 id="Fs_Binary_Codecs_Streaming_BinaryEncoderStream_Write_System_Byte___System_Int32_System_Int32_" data-uid="Fs.Binary.Codecs.Streaming.BinaryEncoderStream.Write(System.Byte[],System.Int32,System.Int32)">Write(Byte[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(byte[] buffer, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Streaming_BinaryEncoderStream.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Streaming.BinaryEncoderStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Streaming/BinaryEncoderStream.cs/#L6" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -27,16 +27,19 @@ namespace Fs.Binary.Codecs.Base85
             Settings = settings.ToReadOnly();
         }
 
+        /// <inheritdoc/>
         public override BinaryEncoder GetEncoder ()
         {
             return new Encoder(Settings);
         }
 
+        /// <inheritdoc/>
         public override BinaryDecoder GetDecoder ()
         {
             return new Decoder(Settings);
         }
 
+        /// <inheritdoc/>
         public override int GetCharCount ( ReadOnlySpan<byte> bytes )
         {
             var encoder = new Base85Encoder(Settings);
@@ -64,6 +67,7 @@ namespace Fs.Binary.Codecs.Base85
             return outputLength;
         }
 
+        /// <inheritdoc/>
         public override int GetByteCount ( ReadOnlySpan<char> chars )
         {
             var decoder = new Base85Decoder(Settings);
@@ -91,6 +95,7 @@ namespace Fs.Binary.Codecs.Base85
             return outputLength;
         }
 
+        /// <inheritdoc/>
         public override char[] GetChars ( ReadOnlySpan<byte> bytes )
         {
             // GetChars process the data in two passes, in order to avoid allocating
@@ -116,6 +121,7 @@ namespace Fs.Binary.Codecs.Base85
             return outputChars;
         }
 
+        /// <inheritdoc/>
         public override unsafe string GetString ( ReadOnlySpan<byte> bytes )
         {
             var encoder = new Base85Encoder(Settings);
@@ -148,6 +154,7 @@ namespace Fs.Binary.Codecs.Base85
             return sb.ToString();
         }
 
+        /// <inheritdoc/>
         public override byte[] GetBytes ( ReadOnlySpan<char> chars )
         {
             // GetBytes converts in two passes so that it can perform a single allocation
@@ -173,6 +180,7 @@ namespace Fs.Binary.Codecs.Base85
             return outputBytes;
         }
 
+        /// <inheritdoc/>
         public override int GetMaxByteCount ( int charCount )
         {
             if (charCount < 0)
@@ -186,6 +194,7 @@ namespace Fs.Binary.Codecs.Base85
             return ((charCount / 5) * 4) + PadInfo[PadInfoCharsToBytes, (charCount % 5)];
         }
 
+        /// <inheritdoc/>
         public override int GetMaxCharCount ( int byteCount )
         {
             if (byteCount < 0)
@@ -204,7 +213,9 @@ namespace Fs.Binary.Codecs.Base85
             return maxChars;
         }
 
+        /// <inheritdoc/>
         public override int MinimumInputBuffer => Settings.DecodingMinimumInputBuffer;
+        /// <inheritdoc/>
         public override int MinimumOutputBuffer => 1;
 
         public Base85Settings Settings { get; }

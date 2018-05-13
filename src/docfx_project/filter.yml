@@ -1,0 +1,5 @@
+apiRules:  
+  - exclude:
+      uidRegex: ^Fs\.Binary\.Codecs\.Settings
+
+    

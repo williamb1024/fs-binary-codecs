@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net46;net47;netstandard2.0</TargetFrameworks>
@@ -12,19 +12,19 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Base16 Base32 Base64 Base85 Ascii85 Stream Encoding Decoding Codec</PackageTags>
     <PackageLicenseUrl>https://github.com/williamb1024/fs-binary-codecs/blob/master/LICENSE</PackageLicenseUrl>
+    <DocumentationFile>bin\Release\net46\Fs.Binary.Codecs.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <!--<DocumentationFile>bin\Debug\net46\Fs.Binary.Codecs.xml</DocumentationFile>-->
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <!--<DocumentationFile>bin\Release\net46\Fs.Binary.Codecs.xml</DocumentationFile>-->
   </PropertyGroup>
+
 
   <ItemGroup Condition="('$(TargetFramework)'=='net45') OR ('$(TargetFramework)'=='net46')">
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />

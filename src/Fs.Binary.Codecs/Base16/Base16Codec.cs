@@ -7,6 +7,11 @@ namespace Fs.Binary.Codecs.Base16
 {
     public partial class Base16Codec : BinaryCodec
     {
+        /// <summary>
+        /// Constructs a new instance of the <see cref="Base16Codec"/> with the specified settings.
+        /// </summary>
+        /// <param name="settings">The <see cref="Base16Settings"/> that determine how the instance operates.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="settings"/> parameter is <c>null</c>.</exception>
         public Base16Codec ( Base16Settings settings )
         {
             if (settings == null)
@@ -15,16 +20,19 @@ namespace Fs.Binary.Codecs.Base16
             Settings = settings.ToReadOnly();
         }
 
+        /// <inheritdoc/>
         public override BinaryEncoder GetEncoder ()
         {
             return new Encoder(Settings);
         }
 
+        /// <inheritdoc/>
         public override BinaryDecoder GetDecoder ()
         {
             return new Decoder(Settings);
         }
 
+        /// <inheritdoc/>
         public override int GetCharCount ( ReadOnlySpan<byte> bytes )
         {
             var encoder = new Base16Encoder(Settings);
@@ -52,6 +60,7 @@ namespace Fs.Binary.Codecs.Base16
             return outputLength;
         }
 
+        /// <inheritdoc/>
         public override int GetByteCount ( ReadOnlySpan<char> chars )
         {
             var decoder = new Base16Decoder(Settings);
@@ -79,6 +88,7 @@ namespace Fs.Binary.Codecs.Base16
             return outputLength;
         }
 
+        /// <inheritdoc/>
         public override char[] GetChars ( ReadOnlySpan<byte> bytes )
         {
             // GetChars process the data in two passes, in order to avoid allocating
@@ -104,6 +114,7 @@ namespace Fs.Binary.Codecs.Base16
             return outputChars;
         }
 
+        /// <inheritdoc/>
         public override unsafe string GetString ( ReadOnlySpan<byte> bytes )
         {
             var encoder = new Base16Encoder(Settings);
@@ -136,6 +147,7 @@ namespace Fs.Binary.Codecs.Base16
             return sb.ToString();
         }
 
+        /// <inheritdoc/>
         public override byte[] GetBytes ( ReadOnlySpan<char> chars )
         {
             // GetBytes converts in two passes so that it can perform a single allocation
@@ -161,6 +173,7 @@ namespace Fs.Binary.Codecs.Base16
             return outputBytes;
         }
 
+        /// <inheritdoc/>
         public override int GetMaxByteCount ( int charCount )
         {
             if (charCount < 0)
@@ -169,6 +182,7 @@ namespace Fs.Binary.Codecs.Base16
             return (charCount >> 1);
         }
 
+        /// <inheritdoc/>
         public override int GetMaxCharCount ( int byteCount )
         {
             if (byteCount < 0)
@@ -177,9 +191,14 @@ namespace Fs.Binary.Codecs.Base16
             return (byteCount << 1) + Settings.EncodingAffixLength;
         }
 
+        /// <inheritdoc/>
         public override int MinimumInputBuffer => Settings.DecodingMinimumInputBuffer;
+        /// <inheritdoc/>
         public override int MinimumOutputBuffer => 1;
 
+        /// <summary>
+        /// Gets a <see cref="Base16Settings"/> instance containing the configuration of this codec.
+        /// </summary>
         public Base16Settings Settings { get; }
     }
 }

@@ -15,16 +15,19 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             Settings = settings.ToReadOnly();
         }
 
+        /// <inheritdoc/>
         public override BinaryEncoder GetEncoder ()
         {
             return new Encoder(Settings);
         }
 
+        /// <inheritdoc/>
         public override BinaryDecoder GetDecoder ()
         {
             return new Decoder(Settings);
         }
 
+        /// <inheritdoc/>
         public override int GetCharCount ( ReadOnlySpan<byte> bytes )
         {
             var encoder = new QpEncoder(Settings);
@@ -52,6 +55,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             return outputLength;
         }
 
+        /// <inheritdoc/>
         public override int GetByteCount ( ReadOnlySpan<char> chars )
         {
             var decoder = new QpDecoder(Settings);
@@ -79,6 +83,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             return outputLength;
         }
 
+        /// <inheritdoc/>
         public override char[] GetChars ( ReadOnlySpan<byte> bytes )
         {
             // GetChars process the data in two passes, in order to avoid allocating
@@ -104,6 +109,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             return outputChars;
         }
 
+        /// <inheritdoc/>
         public override unsafe string GetString ( ReadOnlySpan<byte> bytes )
         {
             var encoder = new QpEncoder(Settings);
@@ -136,6 +142,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             return sb.ToString();
         }
 
+        /// <inheritdoc/>
         public override byte[] GetBytes ( ReadOnlySpan<char> chars )
         {
             // GetBytes converts in two passes so that it can perform a single allocation
@@ -161,6 +168,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             return outputBytes;
         }
 
+        /// <inheritdoc/>
         public override int GetMaxByteCount ( int charCount )
         {
             if (charCount < 0)
@@ -169,6 +177,7 @@ namespace Fs.Binary.Codecs.QuotedPrintable
             return (charCount >> 1);
         }
 
+        /// <inheritdoc/>
         public override int GetMaxCharCount ( int byteCount )
         {
             if (byteCount < 0)
@@ -180,7 +189,9 @@ namespace Fs.Binary.Codecs.QuotedPrintable
 //            return (byteCount << 1) + Settings.EncodingAffixLength;
         }
 
+        /// <inheritdoc/>
         public override int MinimumInputBuffer => 1; // TODO: .. Settings.GetMinimumInputBuffer();
+        /// <inheritdoc/>
         public override int MinimumOutputBuffer => 1;
 
         public QuotedPrintableSettings Settings { get; }

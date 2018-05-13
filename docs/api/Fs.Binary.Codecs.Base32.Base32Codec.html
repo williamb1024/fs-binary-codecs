@@ -1,0 +1,745 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Base32Codec
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Base32Codec
+   ">
+    <meta name="generator" content="docfx 2.35.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Fs.Binary.Codecs.Base32.Base32Codec">
+  
+  
+  <h1 id="Fs_Binary_Codecs_Base32_Base32Codec" data-uid="Fs.Binary.Codecs.Base32.Base32Codec" class="text-break">Class Base32Codec
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html">BinaryCodec</a></div>
+    <div class="level2"><span class="xref">Base32Codec</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetCharCount_System_Byte___">BinaryCodec.GetCharCount(Byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetCharCount_System_Byte___System_Int32_System_Int32_">BinaryCodec.GetCharCount(Byte[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetByteCount_System_Char___">BinaryCodec.GetByteCount(Char[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetByteCount_System_Char___System_Int32_System_Int32_">BinaryCodec.GetByteCount(Char[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetByteCount_System_String_">BinaryCodec.GetByteCount(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetByteCount_System_String_System_Int32_System_Int32_">BinaryCodec.GetByteCount(String, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetChars_System_Byte___">BinaryCodec.GetChars(Byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetChars_System_Byte___System_Int32_System_Int32_">BinaryCodec.GetChars(Byte[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetString_System_Byte___">BinaryCodec.GetString(Byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetString_System_Byte___System_Int32_System_Int32_">BinaryCodec.GetString(Byte[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetBytes_System_Char___">BinaryCodec.GetBytes(Char[])</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetBytes_System_Char___System_Int32_System_Int32_">BinaryCodec.GetBytes(Char[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetBytes_System_String_">BinaryCodec.GetBytes(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetBytes_System_String_System_Int32_System_Int32_">BinaryCodec.GetBytes(String, Int32, Int32)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Fs.Binary.Codecs.Base32.html">Fs.Binary.Codecs.Base32</a></h6>
+  <h6><strong>Assembly</strong>: Fs.Binary.Codecs.dll</h6>
+  <h5 id="Fs_Binary_Codecs_Base32_Base32Codec_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Base32Codec : BinaryCodec</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec__ctor_Fs_Binary_Codecs_Base32_Base32Settings_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.%23ctor(Fs.Binary.Codecs.Base32.Base32Settings)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L26">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec__ctor_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.#ctor*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec__ctor_Fs_Binary_Codecs_Base32_Base32Settings_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.#ctor(Fs.Binary.Codecs.Base32.Base32Settings)">Base32Codec(Base32Settings)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Base32Codec(Base32Settings settings)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Fs.Binary.Codecs.Base32.Base32Settings.html">Base32Settings</a></td>
+        <td><span class="parametername">settings</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_MinimumInputBuffer.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.MinimumInputBuffer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L219">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_MinimumInputBuffer_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.MinimumInputBuffer*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_MinimumInputBuffer" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.MinimumInputBuffer">MinimumInputBuffer</h4>
+  <div class="markdown level1 summary"><p>Gets the minimum amount of input data required to ensure that the codec will always make
+forward progress.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int MinimumInputBuffer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_MinimumInputBuffer">BinaryCodec.MinimumInputBuffer</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_MinimumOutputBuffer.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.MinimumOutputBuffer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L221">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_MinimumOutputBuffer_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.MinimumOutputBuffer*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_MinimumOutputBuffer" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.MinimumOutputBuffer">MinimumOutputBuffer</h4>
+  <div class="markdown level1 summary"><p>Gets the minimum amout of output buffer required to ensure that the codec will always
+make forward progress.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int MinimumOutputBuffer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_MinimumOutputBuffer">BinaryCodec.MinimumOutputBuffer</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_Settings.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.Settings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L226">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_Settings_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.Settings*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_Settings" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.Settings">Settings</h4>
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="Fs.Binary.Codecs.Base32.Base32Settings.html">Base32Settings</a> instance containing the configuration of this codec.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Base32Settings Settings { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Fs.Binary.Codecs.Base32.Base32Settings.html">Base32Settings</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetByteCount_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetByteCount(ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L75">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetByteCount_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetByteCount*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetByteCount_ReadOnlySpan_System_Char__" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetByteCount(ReadOnlySpan{System.Char})">GetByteCount(ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Calculates the number of bytes produced by decoding the specified sequence of characters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetByteCount(ReadOnlySpan&lt;char&gt; chars)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">chars</span></td>
+        <td><p>The sequence of characters to decode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The number of bytes produced by decoding the specified sequence of characters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetByteCount_ReadOnlySpan_System_Char__">BinaryCodec.GetByteCount(ReadOnlySpan&lt;Char&gt;)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetBytes_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetBytes(ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L162">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetBytes_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetBytes*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetBytes_ReadOnlySpan_System_Char__" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetBytes(ReadOnlySpan{System.Char})">GetBytes(ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Decodes the specified sequence of characters into an array of bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override byte[] GetBytes(ReadOnlySpan&lt;char&gt; chars)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">chars</span></td>
+        <td><p>The characters to decode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>A byte array containing the results of decoding the specified characters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetBytes_ReadOnlySpan_System_Char__">BinaryCodec.GetBytes(ReadOnlySpan&lt;Char&gt;)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetCharCount_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetCharCount(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L47">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetCharCount_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetCharCount*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetCharCount_ReadOnlySpan_System_Byte__" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetCharCount(ReadOnlySpan{System.Byte})">GetCharCount(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Calculates the number of characters produced by encoding a specified sequence of bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetCharCount(ReadOnlySpan&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>The sequence of bytes to encode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The number of characters produced by encoding the sequence of bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetCharCount_ReadOnlySpan_System_Byte__">BinaryCodec.GetCharCount(ReadOnlySpan&lt;Byte&gt;)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetChars_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetChars(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L103">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetChars_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetChars*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetChars_ReadOnlySpan_System_Byte__" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetChars(ReadOnlySpan{System.Byte})">GetChars(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Encodes the specified sequence of bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override char[] GetChars(ReadOnlySpan&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>The sequence of bytes to encode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><p>A character array containing the results of encoding the sequence of bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetChars_ReadOnlySpan_System_Byte__">BinaryCodec.GetChars(ReadOnlySpan&lt;Byte&gt;)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetDecoder.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetDecoder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L41">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetDecoder_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetDecoder*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetDecoder" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetDecoder">GetDecoder()</h4>
+  <div class="markdown level1 summary"><p>Obtains a decoder that converts a sequence of encoded characters into a sequence of bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override BinaryDecoder GetDecoder()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Fs.Binary.Codecs.BinaryDecoder.html">BinaryDecoder</a></td>
+        <td><p>A <a class="xref" href="Fs.Binary.Codecs.BinaryDecoder.html">BinaryDecoder</a> that converts a sequence of characters in to a decoded sequence of byte.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetDecoder">BinaryCodec.GetDecoder()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetEncoder.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetEncoder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L35">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetEncoder_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetEncoder*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetEncoder" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetEncoder">GetEncoder()</h4>
+  <div class="markdown level1 summary"><p>Obtains an encoder that converts a sequence of bytes into an encoded sequence of characters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override BinaryEncoder GetEncoder()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Fs.Binary.Codecs.BinaryEncoder.html">BinaryEncoder</a></td>
+        <td><p>A <a class="xref" href="Fs.Binary.Codecs.BinaryEncoder.html">BinaryEncoder</a> that converts a sequence of bytes in to an encoded sequence of characters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetEncoder">BinaryCodec.GetEncoder()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetMaxByteCount_System_Int32_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetMaxByteCount(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L188">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetMaxByteCount_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetMaxByteCount*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetMaxByteCount_System_Int32_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetMaxByteCount(System.Int32)">GetMaxByteCount(Int32)</h4>
+  <div class="markdown level1 summary"><p>Calculates the maximum number of bytes produced by decoding the specified number of characters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetMaxByteCount(int charCount)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">charCount</span></td>
+        <td><p>The number of characters to decode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The maximum number of bytes produced by decoding the specified number of characters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetMaxByteCount_System_Int32_">BinaryCodec.GetMaxByteCount(Int32)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetMaxCharCount_System_Int32_.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetMaxCharCount(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L197">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetMaxCharCount_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetMaxCharCount*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetMaxCharCount_System_Int32_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetMaxCharCount(System.Int32)">GetMaxCharCount(Int32)</h4>
+  <div class="markdown level1 summary"><p>Calculates the maximum number of characters produced by encoding the specified number of bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetMaxCharCount(int byteCount)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">byteCount</span></td>
+        <td><p>The number of bytes to encode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The maximum number of characters produced by encoding the specified number of bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetMaxCharCount_System_Int32_">BinaryCodec.GetMaxCharCount(Int32)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec_GetString_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec.GetString(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.cs/#L129">View Source</a>
+  </span>
+  <a id="Fs_Binary_Codecs_Base32_Base32Codec_GetString_" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetString*"></a>
+  <h4 id="Fs_Binary_Codecs_Base32_Base32Codec_GetString_ReadOnlySpan_System_Byte__" data-uid="Fs.Binary.Codecs.Base32.Base32Codec.GetString(ReadOnlySpan{System.Byte})">GetString(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Encodes the specified sequence of bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string GetString(ReadOnlySpan&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>The sequence of bytes to encode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A string containing the results of encoding the sequence of bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetString_ReadOnlySpan_System_Byte__">BinaryCodec.GetString(ReadOnlySpan&lt;Byte&gt;)</a></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/williamb1024/fs-binary-codecs/new/master/apiSpec/new?filename=Fs_Binary_Codecs_Base32_Base32Codec.md&amp;value=---%0Auid%3A%20Fs.Binary.Codecs.Base32.Base32Codec%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/Fs.Binary.Codecs/Base32/Base32Codec.Encoder.cs/#L7" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
