@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Fs.Binary.Codecs.Base32
 {
+    /// <summary>
+    /// Base32 codec.
+    /// </summary>
     public partial class Base32Codec : BinaryCodec
     {
         private const int PadInfoEncoding = 0;

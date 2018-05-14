@@ -5,11 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace Fs.Binary.Codecs.Base16
-   </title>
+    <title>Usage </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace Fs.Binary.Codecs.Base16
-   ">
+    <meta name="title" content="Usage ">
     <meta name="generator" content="docfx 2.35.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -68,19 +66,18 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Fs.Binary.Codecs.Base16">
-  
-  <h1 id="Fs_Binary_Codecs_Base16" data-uid="Fs.Binary.Codecs.Base16" class="text-break">Namespace Fs.Binary.Codecs.Base16
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="Fs.Binary.Codecs.Base16.Base16Codec.html">Base16Codec</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Fs.Binary.Codecs.Base16.Base16Settings.html">Base16Settings</a></h4>
-      <section></section>
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="usage">Usage</h2>
+
+<p>Each codec extends <a class="xref" href="../api/Fs.Binary.Codecs.BinaryCodec.html">BinaryCodec</a>, which provides the implementation
+that is common to all codecs. At it simplest, each codec provides <a class="xref" href="../api/Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetBytes_System_String_">GetBytes(String)</a>,
+<a class="xref" href="../api/Fs.Binary.Codecs.BinaryCodec.html#Fs_Binary_Codecs_BinaryCodec_GetChars_System_Byte___">GetChars(Byte[])</a> and similar overloads. The methods decode and encode sequences of characters and bytes that are completely loaded into memory.</p>
+<p>As an example, encoding an array of bytes with the <code>Base16</code> codec can be achieved with:</p>
+<pre><code class="lang-C#">var inputData = new byte[]{0, 1, 2, 3, 4, 5};
+var encodedData = BinaryCodecs.Base16Standard.GetChars(inputData);
+var decodedData = BinaryCodecs.Base16Standard.GetBytes(encodedData);
+</code></pre><h2 id="streaming">Streaming</h2>
+<p>When you have an indeterminate amount of input or your simply don&#39;t want to load all of the data into memory, use the <a class="xref" href="../api/Fs.Binary.Codecs.Streaming.BinaryDecoderStream.html">BinaryDecoderStream</a> or <a class="xref" href="../api/Fs.Binary.Codecs.Streaming.BinaryEncoderStream.html">BinaryEncoderStream</a> classes.</p>
 </article>
           </div>
           
@@ -88,6 +85,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/williamb1024/fs-binary-codecs/blob/master/src/docfx_project/articles/usage.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

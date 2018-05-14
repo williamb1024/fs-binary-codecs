@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base16.Base16Codec.html",
-          "hash": "KtDPA9zRIoDm20zEq65l7A=="
+          "hash": "nyvZEKm3wE9HSYAaJgCw7A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base16.Base16Settings.html",
-          "hash": "HsA7hg+6J4LIXNH1LUnLVA=="
+          "hash": "PWct2FThE2Cpt1ljUk4/qQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base16.html",
-          "hash": "Tisls5JP7Fop6Jp29wmTtQ=="
+          "hash": "6KQDpNHO3nagxpQ8AmqR7A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base32.Base32Codec.html",
-          "hash": "jhJBQ2gMrsfzleOq87U04g=="
+          "hash": "3QPScaSFq2SSFYFEgvmOZQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base32.Base32Settings.html",
-          "hash": "1FU+ifs0wAZeM2Mh3JBEiw=="
+          "hash": "fXU0mo4LUga7a3XXT0vM0w=="
         }
       },
       "is_incremental": true,
@@ -69,10 +69,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base32.html",
-          "hash": "qDowv9QlUmUHG5F6JKvi0A=="
+          "hash": "UJ+JNgMThmYo5XhWUPy6Yg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base64.Base64Codec.html",
-          "hash": "VtYi0NvdGqmbVXkwsKhylA=="
+          "hash": "WS4IAu3HgCDKA5cBk1Kv7g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base64.Base64Settings.html",
-          "hash": "le1KKwCyIuYjhStLrblw1A=="
+          "hash": "3n3c9BhJJKuu+40elfHR7w=="
         }
       },
       "is_incremental": true,
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base64.html",
-          "hash": "bv+WPJJ3urBm84k7X2DU8A=="
+          "hash": "oC3bmE4/m+ZGUxKpRNFJ+A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base85.Base85Codec.html",
-          "hash": "BC4w+3zBIN1QVldvl98RxQ=="
+          "hash": "Xuyq5V4/KsN0IolDAdsXiA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base85.Base85Settings.html",
-          "hash": "enAnFcrNw1vWY3SPDgegzg=="
+          "hash": "nNVZKVW6f1uJSm+TtHHArg=="
         }
       },
       "is_incremental": true,
@@ -141,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Base85.html",
-          "hash": "Tg8MoM2ba+yOmUKZb3ALSw=="
+          "hash": "AtnG8HkIENe/4sCXrrP3+w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -153,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.BinaryCodec.html",
-          "hash": "eSkjwyefXPHokDnwpIWuPA=="
+          "hash": "/vA4G5uW+KJqXC65n5hbRQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.BinaryCodecs.html",
-          "hash": "xCgRMgz9xsCjw4spIans2w=="
+          "hash": "nLhyu5+QdwNUU2vajEsN6A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -177,10 +177,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.BinaryDecoder.html",
-          "hash": "tM1gDlShCFL5IMlmljzQcw=="
+          "hash": "Bv1KWlvOdGkaIFe40djh2A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -189,10 +189,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.BinaryEncoder.html",
-          "hash": "JKw1QEz4oCtJWG+vfQQlJA=="
+          "hash": "4CCO76PUYYS18Wgza3esZA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -201,10 +201,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.ConvertStatus.html",
-          "hash": "nGNB5bFxnabZbskD8u78AA=="
+          "hash": "/yloUy+/aS5y+jysOw/7sQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -213,10 +213,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.QuotedPrintable.QuotedPrintableCodec.html",
-          "hash": "YIybOe8fP6i1D5t+tCytWQ=="
+          "hash": "gmd3mDZssZ2Mbnx/H+M6Tw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.QuotedPrintable.QuotedPrintableSettings.html",
-          "hash": "ThW9XAEfh0xwjhPrA12Lgg=="
+          "hash": "wZqJdCJSg7epld37IYqqYA=="
         }
       },
       "is_incremental": true,
@@ -237,10 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.QuotedPrintable.html",
-          "hash": "/2VbHUb/SMja4Ij2XnJ3WA=="
+          "hash": "WWBzAaxmNKMfYzc0ZTiB9g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Streaming.BinaryDecoderStream.html",
-          "hash": "MeQHru8T3cCs9oU76M1KKQ=="
+          "hash": "J2TXisPf/ftd+xdYgDHklA=="
         }
       },
       "is_incremental": true,
@@ -261,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Streaming.BinaryDecoderWriter.html",
-          "hash": "k41lQTg0SEPnpd2pOSjFtA=="
+          "hash": "q2YeVidayq2zARkohQxPvA=="
         }
       },
       "is_incremental": true,
@@ -273,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Streaming.BinaryEncoderReader.html",
-          "hash": "MDNLhutFVPtHCa4xDe5ryA=="
+          "hash": "xbXWPJ4Rutynzu1y98sCGg=="
         }
       },
       "is_incremental": true,
@@ -285,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Streaming.BinaryEncoderStream.html",
-          "hash": "8EjUNNKkFtqJlPgvHv/Gqw=="
+          "hash": "Z4vcj1He5j6BuDy+x6o4wg=="
         }
       },
       "is_incremental": true,
@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.Streaming.html",
-          "hash": "e7YqCyRerhWSCGbZ0ReQQA=="
+          "hash": "ZYCq1/0HbbMSKeTP7yWZrQ=="
         }
       },
       "is_incremental": true,
@@ -309,10 +309,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Fs.Binary.Codecs.html",
-          "hash": "afsh/OOLrsGaB1SXCjj9UQ=="
+          "hash": "WpdJoKpLfOnoLcVGGsME5g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -328,36 +328,36 @@
       "version": ""
     },
     {
-      "type": "Toc",
-      "source_relative_path": "api/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/toc.html",
-          "hash": "QhwmILYBty4LT1OZtloPiA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "articles/intro.md",
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "LixPSQUOmcrEgMVMS23X5Q=="
+          "hash": "E894m2IQOOTHMe8AU8I25w=="
         }
       },
       "is_incremental": true,
       "version": ""
     },
     {
-      "type": "Toc",
-      "source_relative_path": "articles/toc.yml",
+      "type": "Conceptual",
+      "source_relative_path": "articles/usage.md",
       "output": {
         ".html": {
-          "relative_path": "articles/toc.html",
-          "hash": "xVlQaX7Tk85omoiWv3O+Ag=="
+          "relative_path": "articles/usage.html",
+          "hash": "rOFXF36ikTptod/RjeSxKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "fusion/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "fusion/toc.html",
+          "hash": "dk1KQy8lCoXa7R7P/ic4ZA=="
         }
       },
       "is_incremental": false,
@@ -381,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "ob7LqWp4kTNLz+9W4omdTw=="
+          "hash": "DhGKy6PyPQ/1euN33F0n4w=="
         }
       },
       "is_incremental": false,
@@ -400,11 +400,11 @@
           "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         }

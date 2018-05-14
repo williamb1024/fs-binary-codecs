@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Fs.Binary.Codecs.Base16
 {
+    /// <summary>
+    /// Base16 codec.
+    /// </summary>
     public partial class Base16Codec : BinaryCodec
     {
         /// <summary>

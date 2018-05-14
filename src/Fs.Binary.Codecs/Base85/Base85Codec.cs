@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Fs.Binary.Codecs.Base85
 {
+    /// <summary>
+    /// Base85 codec.
+    /// </summary>
     public partial class Base85Codec : BinaryCodec
     {
         private const int PadInfoRequiredPadding = 0;
